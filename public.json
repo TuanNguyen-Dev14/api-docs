@@ -1905,22 +1905,23 @@
             }
           }
         },
-        "description": "A successful request to this endpoint returns the search configuration."
+        "description": "A successful request to this endpoint returns the search configuration.",
+        "x-internal": true
       }
     },
-    "/tuan/test": {
+    "/a/test": {
       "get": {
-        "summary": "test get",
+        "summary": "a",
         "tags": [
           "Agent"
         ],
         "responses": {},
-        "operationId": "get-tuan-test",
+        "operationId": "get-a-test",
         "x-stoplight": {
-          "id": "o6ku4bnrattjh"
+          "id": "tx2f74n31q65e"
         },
-        "deprecated": true,
-        "x-internal": true
+        "x-internal": true,
+        "deprecated": true
       }
     }
   },
