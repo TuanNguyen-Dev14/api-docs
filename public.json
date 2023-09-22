@@ -1920,8 +1920,7 @@
         "x-stoplight": {
           "id": "tx2f74n31q65e"
         },
-        "x-internal": false,
-        "deprecated": true
+        "x-internal": false
       }
     }
   },
