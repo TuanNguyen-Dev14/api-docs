@@ -1938,6 +1938,20 @@
         "x-internal": true,
         "deprecated": true
       }
+    },
+    "/c": {
+      "get": {
+        "summary": "c",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {},
+        "operationId": "get-c",
+        "x-stoplight": {
+          "id": "1ewryibo5dbui"
+        },
+        "x-internal": true
+      }
     }
   },
   "components": {
