@@ -2030,6 +2030,38 @@
           "id": "f8pem25h1bsvn"
         }
       }
+    },
+    "/e/test": {
+      "get": {
+        "summary": "e",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "te": {
+                      "type": "string",
+                      "x-stoplight": {
+                        "id": "e49y25qeu991m"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-e-test",
+        "x-stoplight": {
+          "id": "2yr659moj7n4g"
+        }
+      }
     }
   },
   "components": {
