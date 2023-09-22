@@ -2096,6 +2096,23 @@
           "id": "u8fcjxwdv4vab"
         }
       }
+    },
+    "/h/test": {
+      "get": {
+        "summary": "h",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-h-test",
+        "x-stoplight": {
+          "id": "8tv080qqew3ff"
+        }
+      }
     }
   },
   "components": {
