@@ -148,7 +148,16 @@
         "summary": "Get test run details",
         "description": "A successful request to this endpoint retrieves the details of a test run given the `projectId` and `order` values.",
         "tags": [
-          "Test Run"
+          "Test Run",
+          "Schedule",
+          "Test Result",
+          "Release",
+          "Build",
+          "Project",
+          "Test Project",
+          "Test Case",
+          "Search",
+          "Test Suite",
         ]
       },
       "delete": {
