@@ -17,7 +17,13 @@ jobs:
       - name: Check out repo 📚
         uses: actions/checkout@v3
 
+      # - name: Run `openapi` command 🚀
+      #   uses: readmeio/rdme@v8
+      #   with:
+      #     rdme: openapi public.json --version=${{ inputs.version }} --key=${{ secrets.README_API_KEY }}
+
       - name: Run `openapi` command 🚀
-        uses: readmeio/rdme@v8
-        with:
-          rdme: openapi public.json --version=${{ inputs.version }} --key=${{ secrets.README_API_KEY }}
+        run: |
+          npm install rdme@latest -g
+          rdme openapi public.json --version=${{ inputs.version }} \
+            --key=${{ secrets.README_API_KEY }}
