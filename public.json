@@ -1,0 +1,7242 @@
+{
+  "openapi": "3.0.1",
+  "x-stoplight": {
+    "id": "5qnzx749ssg4b"
+  },
+  "info": {
+    "title": "Katalon TestOps API reference",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://testops.katalon.io",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "basicScheme": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Agent"
+    },
+    {
+      "name": "Build"
+    },
+    {
+      "name": "Comment"
+    },
+    {
+      "name": "Execution"
+    },
+    {
+      "name": "Execution export"
+    },
+    {
+      "name": "Execution Request"
+    },
+    {
+      "name": "Execution Test Result"
+    },
+    {
+      "name": "Execution Test Suite"
+    },
+    {
+      "name": "File"
+    },
+    {
+      "name": "Job"
+    },
+    {
+      "name": "Katalon Recorder"
+    },
+    {
+      "name": "Label"
+    },
+    {
+      "name": "Project"
+    },
+    {
+      "name": "Release"
+    },
+    {
+      "name": "Schedule"
+    },
+    {
+      "name": "Search"
+    },
+    {
+      "name": "Smart Scheduler"
+    },
+    {
+      "name": "Task"
+    },
+    {
+      "name": "Team"
+    },
+    {
+      "name": "Test Case"
+    },
+    {
+      "name": "Test Cloud Agent"
+    },
+    {
+      "name": "Test Object"
+    },
+    {
+      "name": "Test Plan"
+    },
+    {
+      "name": "Test Project"
+    },
+    {
+      "name": "Test Report"
+    },
+    {
+      "name": "Test Run"
+    },
+    {
+      "name": "Test Suite"
+    },
+    {
+      "name": "User"
+    },
+    {
+      "name": "Web Service"
+    }
+  ],
+  "paths": {
+    "/api/v1/executions": {
+      "get": {
+        "operationId": "list_2",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The ID of the project that contains the test run."
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Test runs are ordered in a list from first to last executed. Can be found in the Reports section of TestOps. The nth test run in a project would have an order value of n."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExecutionResource"
+                }
+              }
+            }
+          }
+        },
+        "summary": "Get test run details",
+        "description": "A successful request to this endpoint retrieves the details of a test run given the `projectId` and `order` values.",
+        "tags": [
+          "Test Run"
+        ]
+      },
+      "delete": {
+        "summary": "Delete test runs",
+        "operationId": "delete_6",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The ID of the project that contains the test run."
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "description": "An array of order values of the test runs to delete."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GetExecutionResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint permanently deletes multiple test runs. The response lists the details of the deleted test runs.",
+        "tags": [
+          "Test Run"
+        ]
+      }
+    },
+    "/api/v1/executions/{id}/rerun": {
+      "post": {
+        "summary": "Re-run a test run",
+        "operationId": "rerunExecution",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "Test Run"
+        ],
+        "description": "This endpoint re-runs a test run with the given test run `id`. Provide the test run `id` value in the `test run` object that was returned from your previous request, and TestOps will re-run the test run."
+      }
+    },
+    "/api/v1/executions/terminate": {
+      "post": {
+        "summary": "Terminate a test run in progress",
+        "operationId": "terminatedExecution",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "The ID of the project that contains the test run."
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Test runs are ordered in a list from first to last executed. Can be found in the Reports section of TestOps. The nth test run in a project would have an order value of n."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExecutionResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint terminates a test run in progress. This method returns the details of the test run you terminated.",
+        "tags": [
+          "Test Run"
+        ]
+      }
+    },
+    "/api/v1/executions/{id}/export": {
+      "get": {
+        "tags": [
+          "Test Run"
+        ],
+        "summary": "Download a test run",
+        "operationId": "download_5",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "fileType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "PDF",
+                "CSV",
+                "XLSX",
+                "ZIP",
+                "HAR"
+              ],
+              "default": "CSV"
+            },
+            "description": "The format for the summary file."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "A successful request to this endpoint exports and downloads a test run summary file in the specified format (`PDF`, `CSV`, `XSLX`, `ZIP`, or `HAR`)."
+      }
+    },
+    "/api/v1/executions/{id}/link-release": {
+      "post": {
+        "tags": [
+          "Test Run",
+          "Release"
+        ],
+        "summary": "Link a test run to a release",
+        "operationId": "linkRelease_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "releaseId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExecutionResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint links a test run to a release. This method returns the updated test run details with the linked release."
+      }
+    },
+    "/api/v1/executions/{id}/unlink-release": {
+      "post": {
+        "tags": [
+          "Test Run",
+          "Release"
+        ],
+        "summary": "Unlink a test run from a release",
+        "operationId": "unlinkReleaseAndBuild",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExecutionResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint unlinks a test run from a release. This method returns the updated test run details."
+      }
+    },
+    "/api/v1/executions/{id}/link-build": {
+      "post": {
+        "tags": [
+          "Test Run",
+          "Build"
+        ],
+        "summary": "Link a test run to a build",
+        "operationId": "linkBuild_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "buildId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetExecutionResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint links a test run to a build. This method returns the updated test run with the linked build."
+      }
+    },
+    "/api/v1/executions/{id}/download-file": {
+      "get": {
+        "summary": "Download all uploaded files of a test run",
+        "operationId": "downloadFile",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "Test Run"
+        ],
+        "description": "A successful request to this endpoint returns all test report files of a test run, including test results, screenshots, and execution metadata."
+      }
+    },
+    "/api/v1/smart-scheduler/{id}": {
+      "get": {
+        "summary": "Retrieve a scheduled execution",
+        "operationId": "get_9",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSmartScheduler"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint retrieves a `smart scheduler` object given the corresponding ID.",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/api/v1/smart-scheduler/schedule": {
+      "post": {
+        "summary": "Schedule an execution",
+        "operationId": "createRunConfigurationAndSchedule",
+        "parameters": [
+          {
+            "name": "verifyRunConfiguration",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditSmartSchedulerResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSmartScheduler"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint schedules a test execution given the specified `smart scheduler` properties (a `run configuration` object and a `scheduler` object).",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/api/v1/smart-scheduler/save-configuration": {
+      "post": {
+        "summary": "Create and save a run configuration",
+        "operationId": "createOrUpdateConfiguration",
+        "parameters": [
+          {
+            "name": "verifyRunConfiguration",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditRunConfigurationResource"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "name": "API execution",
+                    "projectId": 713995,
+                    "teamId": 242852,
+                    "browserType": "CHROME",
+                    "testProjectId": 413207,
+                    "testSuiteId": 1021174,
+                    "configType": "TEST_SUITE",
+                    "cloudType": "TEST_CLOUD_AGENT",
+                    "ksVersion": "8.5.2",
+                    "executionMode": "SEQUENTIAL"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRunConfiguration"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint creates and saves a `run configuration` object. This method returns the created `run configuration` object details.",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/api/v1/smart-scheduler/run": {
+      "post": {
+        "summary": "Create and trigger an execution",
+        "operationId": "createRunConfigurationAndRun",
+        "parameters": [
+          {
+            "name": "verifyRunConfiguration",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditRunConfigurationResource"
+              },
+              "examples": {
+                "Example 1": {
+                  "value": {
+                    "configType": "TEST_SUITE",
+                    "testCloudAgents": [
+                      {
+                        "browser": "chrome",
+                        "browserVersion": "114",
+                        "headless": false,
+                        "os": "windows"
+                      }
+                    ],
+                    "cloudType": "TEST_CLOUD_AGENT",
+                    "projectId": 123,
+                    "teamId": 123,
+                    "testProjectId": 123,
+                    "testSuiteId": 123,
+                    "ksVersion": "8.6.0",
+                    "browserType": "CHROME",
+                    "triggerMode": "TESTOPS_SCHEDULER",
+                    "executionProfileId": 0
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRunConfiguration"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint creates a `run configuration` object and triggers an execution immediately. This method returns the created `run configuration` object.",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/api/v1/run-configurations/{id}/execute": {
+      "put": {
+        "tags": [
+          "Schedule"
+        ],
+        "summary": "Trigger an execution",
+        "operationId": "run",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BuildInfo"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint triggers an execution from an existing `run configuration` object, given the `run configuration` ID. This method returns the build information."
+      }
+    },
+    "/api/v1/run-configurations/{id}": {
+      "delete": {
+        "summary": "Delete a run configuration",
+        "operationId": "delete_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRunConfiguration"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint deletes a saved `run configuration` object. This method returns the deleted object details.",
+        "tags": [
+          "Schedule"
+        ]
+      }
+    },
+    "/api/v1/run-configurations/{id}/link-release": {
+      "post": {
+        "tags": [
+          "Schedule"
+        ],
+        "summary": "Link a run configuration to a release",
+        "operationId": "linkRelease",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "releaseId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRunConfiguration"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint links a run configuration to a release. This method returns the updated run configuration with the linked release."
+      }
+    },
+    "/api/v1/run-configurations/{id}/link-build": {
+      "post": {
+        "tags": [
+          "Schedule"
+        ],
+        "summary": "Link a scheduled test run to a build",
+        "operationId": "linkBuild",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "buildId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRunConfiguration"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint links a scheduled test run to a build. This method returns the updated scheduled test run with the linked build."
+      }
+    },
+    "/api/v1/run-configurations/{id}/unlink-release": {
+      "post": {
+        "tags": [
+          "Schedule"
+        ],
+        "summary": "Unlink a run configuration from a release",
+        "operationId": "unlinkRelease",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRunConfiguration"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful release to this endpoint unlinks a run configuration from a release. This method returns the updated run configuration details."
+      }
+    },
+    "/api/v1/test-suites/create": {
+      "post": {
+        "tags": [
+          "Test Suite"
+        ],
+        "summary": "Create a test suite",
+        "operationId": "create",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTestSuiteResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint creates a test suite. This method returns the newly-created test suite details.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "testCases": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "testProject": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "testCases",
+                  "testProject"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test-suites/{id}/edit": {
+      "post": {
+        "tags": [
+          "Test Suite"
+        ],
+        "summary": "Edit a test suite",
+        "operationId": "edit",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "testCases": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "path": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "name",
+                  "testCases"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestSuiteResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint edits a test suite created in TestOps. This method returns the updated test suite details."
+      }
+    },
+    "/api/v1/test-suites/{id}": {
+      "get": {
+        "tags": [
+          "Test Suite"
+        ],
+        "summary": "Get details of a test suite",
+        "operationId": "get_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestSuiteResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint returns details of a specified test suite."
+      },
+      "delete": {
+        "tags": [
+          "Test Suite"
+        ],
+        "summary": "Delete a test suite",
+        "operationId": "deleteTestSuite",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTestSuiteResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint deletes a specified TestOps test suite. This method returns the deleted test suite details.",
+        "x-internal": false
+      }
+    },
+    "/api/v1/test-cases/{id}": {
+      "get": {
+        "tags": [
+          "Test Case"
+        ],
+        "summary": "Get details of a test case",
+        "operationId": "get_7",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestCaseResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint returns details of a specified test case."
+      }
+    },
+    "/api/v1/test-cases/update": {
+      "post": {
+        "tags": [
+          "Test Case"
+        ],
+        "summary": "Update a test case",
+        "operationId": "update_10",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestCaseResource"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "maintainer": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number"
+                      },
+                      "email": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "required": [
+                  "id"
+                ]
+              }
+            }
+          },
+          "description": ""
+        },
+        "description": "A successful request to this endpoint updates details of a specified test case. This method returns the updated test case."
+      }
+    },
+    "/api/v1/search": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Get resources of a specific type",
+        "operationId": "search_1",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageBaseResource"
+                }
+              }
+            }
+          }
+        },
+        "x-internal": false,
+        "description": "A successful request to this endpoint retrieves the resources of a specific type by multiple conditions. This method supports pagination."
+      },
+      "post": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Get resources of a specific type by multiple conditions",
+        "operationId": "search",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageBaseResource"
+                }
+              }
+            }
+          }
+        },
+        "x-internal": true,
+        "description": "A successful request to this endpoint retrieves the resources based on the input parameters. This method supports pagination and sorting."
+      }
+    },
+    "/api/v1/build": {
+      "post": {
+        "tags": [
+          "Build"
+        ],
+        "summary": "Create a build",
+        "operationId": "create_7",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint creates a build given the specified `build` properties. This method returns the build details."
+      }
+    },
+    "/api/v1/build/{id}": {
+      "put": {
+        "tags": [
+          "Build"
+        ],
+        "summary": "Update a build",
+        "operationId": "update_9",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BuildResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint updates a build given the specified `build` properties. This method returns the updated build details."
+      },
+      "delete": {
+        "tags": [
+          "Build"
+        ],
+        "summary": "Delete a build",
+        "operationId": "delete_8",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BuildResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint deletes a build. This method returns the deleted build details."
+      }
+    },
+    "/api/v1/test-results/{id}": {
+      "get": {
+        "tags": [
+          "Execution Test Result"
+        ],
+        "summary": "Get a test result",
+        "operationId": "get_2",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutionTestResultResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint retrieves a test result given the `id`."
+      }
+    },
+    "/api/v1/releases": {
+      "put": {
+        "tags": [
+          "Release"
+        ],
+        "summary": "Update a release",
+        "operationId": "update_3",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditReleaseResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReleaseResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "This endpoint updates an existing release and returns the release details."
+      },
+      "post": {
+        "tags": [
+          "Release"
+        ],
+        "summary": "Create a release",
+        "operationId": "createOrUpdate_1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReleaseResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReleaseResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint creates a new release. This method returns all applicable details of the newly-created release."
+      }
+    },
+    "/api/v1/releases/{id}/active": {
+      "post": {
+        "tags": [
+          "Release"
+        ],
+        "summary": "Archive/unarchive a release",
+        "operationId": "activeRelease",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "closed",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "`true` if you want to archive the release."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReleaseResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint archives/unarchives a release given the `releaseId`."
+      }
+    },
+    "/api/v1/releases/{id}": {
+      "delete": {
+        "tags": [
+          "Release"
+        ],
+        "summary": "Delete a release",
+        "operationId": "delete_4",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReleaseResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint deletes an existing release given the `releaseId`. This method returns the deleted release details."
+      }
+    },
+    "/api/v1/projects": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "summary": "Get all projects",
+        "operationId": "list_1",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Used when you want to get all projects of a specific team."
+          },
+          {
+            "schema": {
+              "minimum": 0,
+              "format": "int32",
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "page"
+          },
+          {
+            "schema": {
+              "minimum": 1,
+              "type": "integer",
+              "format": "int32"
+            },
+            "in": "query",
+            "name": "size"
+          },
+          {
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "in": "query",
+            "name": "sort"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageProjectResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint returns all projects."
+      }
+    },
+    "/api/v1/projects/{id}": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "summary": "Returns a project detail",
+        "operationId": "get_10",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetProjectResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint returns details of a project."
+      }
+    },
+    "/api/v1/comments": {
+      "put": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Update a comment",
+        "operationId": "update_7",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCommentResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint updates an existing comment, and returns the updated comment details."
+      },
+      "post": {
+        "tags": [
+          "Comment"
+        ],
+        "summary": "Create a comment",
+        "operationId": "create_5",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCommentResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommentResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint creates a new comment, and returns the details of the newly-created comment."
+      }
+    },
+    "/api/v1/agent/{id}": {
+      "get": {
+        "tags": [
+          "Agent"
+        ],
+        "summary": "Get a local agent",
+        "operationId": "get_19",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint retrieves the details of a specified local agent. "
+      }
+    },
+    "/api/v1/agent/threshold": {
+      "put": {
+        "tags": [
+          "Agent"
+        ],
+        "summary": "Updates the threshold for local agent",
+        "operationId": "updateThreshold",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "uuid": {
+                    "type": "string"
+                  },
+                  "teamId": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "threshold": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint updates the threshold for the specified local agent, and returns the updated local agent details."
+      }
+    },
+    "/api/v1/git/update": {
+      "post": {
+        "tags": [
+          "Test Project"
+        ],
+        "summary": "Update a Git test project",
+        "operationId": "updateGitRepo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateGitRepositoryResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitRepositoryResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint updates a test project, and returns the updated Git test project details."
+      }
+    },
+    "/api/v1/git/create": {
+      "post": {
+        "tags": [
+          "Test Project"
+        ],
+        "summary": "Create a Git test project",
+        "operationId": "createGitRepo",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGitRepositoryResource"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/GitRepositoryResource"
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint creates a new Git test project, and returns the new Git test project details."
+      }
+    },
+    "/api/v1/test-projects/{id}/refresh-tsc": {
+      "post": {
+        "tags": [
+          "Test Project"
+        ],
+        "summary": "Refresh the test suite collections of a test project",
+        "operationId": "refreshTSC",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "description": "A successful request to this endpoint refreshes and retrieves the latest test suite collection list of a specified Git test project."
+      }
+    },
+    "/api/v1/test-projects/{id}": {
+      "get": {
+        "tags": [
+          "Test Project"
+        ],
+        "summary": "Get a test project",
+        "operationId": "get_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestProjectResource"
+                }
+              }
+            }
+          }
+        },
+        "x-internal": false,
+        "description": "A successful request to this endpoint returns the test project details given the corresponding test project ID."
+      },
+      "delete": {
+        "tags": [
+          "Test Project"
+        ],
+        "summary": "Delete a test project",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestProjectResource"
+                }
+              }
+            }
+          }
+        },
+        "x-internal": true,
+        "description": "A successful request to this endpoint deletes a specified test project, and returns the details of the deleted test project. "
+      }
+    },
+    "/api/v1/search/info": {
+      "get": {
+        "tags": [
+          "Search"
+        ],
+        "summary": "Get the search configuration",
+        "operationId": "test",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "A successful request to this endpoint returns the search configuration."
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AgentResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "ip": {
+            "type": "string"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "lastPing": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "os": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "hostname": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "threshold": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numExecutingJobs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numAssignedJobs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "agentVersion": {
+            "type": "string"
+          },
+          "deleted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "BaselineCollectionGroupResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "latestVersion": {
+            "$ref": "#/components/schemas/BaselineCollectionResource"
+          },
+          "runConfigurations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RunConfigurationResource"
+            }
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "lastRun": {
+            "$ref": "#/components/schemas/KEyesExecutionResource"
+          }
+        }
+      },
+      "BaselineCollectionResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "baselines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaselineResource"
+            }
+          },
+          "numberOfBaselines": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "updatedBy": {
+            "$ref": "#/components/schemas/UserResource"
+          },
+          "baselineCollectionGroup": {
+            "$ref": "#/components/schemas/BaselineCollectionGroupResource"
+          },
+          "unsaved": {
+            "type": "boolean"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "BaselineResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "uploadFile": {
+            "$ref": "#/components/schemas/UploadFileResource"
+          },
+          "screenshotId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "execution": {
+            "$ref": "#/components/schemas/ExecutionResource"
+          },
+          "screenshot": {
+            "$ref": "#/components/schemas/ScreenshotResource"
+          },
+          "width": {
+            "type": "number",
+            "format": "double"
+          },
+          "height": {
+            "type": "number",
+            "format": "double"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "draftIgnoringZones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IgnoringZoneResource"
+            }
+          },
+          "ignoringZones": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IgnoringZoneResource"
+            }
+          }
+        }
+      },
+      "BuildResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the build."
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the associated project."
+          },
+          "releaseId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the release that contains the build."
+          },
+          "buildStatistics": {
+            "$ref": "#/components/schemas/BuildStatisticsResource"
+          },
+          "name": {
+            "type": "string",
+            "description": "The build name."
+          },
+          "description": {
+            "type": "string",
+            "description": "The build description."
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The creation date and time for the build."
+          }
+        },
+        "required": [
+          "projectId",
+          "releaseId",
+          "name"
+        ]
+      },
+      "BasicBuildResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "releaseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "BuildStatisticsResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalExecution": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPassed": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalFailed": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CircleCIAgentResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "project": {
+            "type": "string"
+          },
+          "vcsType": {
+            "type": "string"
+          },
+          "branch": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "apiKey": {
+            "type": "string"
+          }
+        }
+      },
+      "ConfigResource": {
+        "type": "object",
+        "properties": {
+          "webSocketUrl": {
+            "type": "string"
+          },
+          "storeUrl": {
+            "type": "string"
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "stripePublicApi": {
+            "type": "string"
+          },
+          "buildVersion": {
+            "type": "string"
+          },
+          "commitId": {
+            "type": "string"
+          },
+          "sentryDsn": {
+            "type": "string"
+          },
+          "sentryEnv": {
+            "type": "string"
+          },
+          "sentryTracesSampleRate": {
+            "type": "string"
+          },
+          "serverUrl": {
+            "type": "string"
+          },
+          "ioServerUrl": {
+            "type": "string"
+          },
+          "proxyTunnelServerUrl": {
+            "type": "string"
+          },
+          "maxExecutionComparison": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maxExecutionDownload": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "agentDownloadUrls": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "proxyTunnelDownloadUrls": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "reportUploaderDownloadUrl": {
+            "type": "string"
+          },
+          "reportUploaderLatestVersion": {
+            "type": "string"
+          },
+          "subDomainPattern": {
+            "type": "string"
+          },
+          "cancellationSurveyUrl": {
+            "type": "string"
+          },
+          "launchDarklyClientId": {
+            "type": "string"
+          },
+          "launchDarklyDefaultUser": {
+            "type": "string"
+          },
+          "launchDarklyPrefix": {
+            "type": "string"
+          },
+          "minTestExecutionOrdered": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userFlowToken": {
+            "type": "string"
+          },
+          "demoProjectUrl": {
+            "type": "string"
+          },
+          "usingSubDomain": {
+            "type": "boolean"
+          },
+          "advancedFeatureEnabled": {
+            "type": "boolean"
+          },
+          "frameworksIntegrationEnabled": {
+            "type": "boolean"
+          },
+          "testOpsSubscriptionEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CommentResource": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "displayName": {
+                "type": "string"
+              },
+              "displayAvatar": {
+                "type": "string"
+              },
+              "bySystem": {
+                "type": "boolean"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/UpdateCommentResource"
+          }
+        ]
+      },
+      "CreateCommentResource": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "3fdb8c79ffae9"
+        },
+        "properties": {
+          "objectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "content": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "objectType": {
+            "type": "string",
+            "enum": [
+              "EXECUTION_TEST_RESULT",
+              "KEYES_EXECUTION"
+            ]
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateCommentResource": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/CreateCommentResource"
+          }
+        ]
+      },
+      "EnvironmentVariable": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "ExecutionResource": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "ERROR",
+              "INCOMPLETE",
+              "RUNNING",
+              "SKIPPED",
+              "NOT_RUN"
+            ]
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "elapsedDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalSkippedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectResource"
+          },
+          "buildId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionStage": {
+            "type": "string",
+            "enum": [
+              "RUNNING",
+              "COMPLETED",
+              "TERMINATE",
+              "ANALYZING",
+              "ANALYZED",
+              "IMPORTING",
+              "ERROR"
+            ]
+          },
+          "webUrl": {
+            "type": "string"
+          },
+          "testSuiteCollections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestSuiteCollectionEntityResource"
+            }
+          },
+          "executionTestSuiteResources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExecutionTestSuiteResource"
+            }
+          },
+          "release": {
+            "$ref": "#/components/schemas/ReleaseResource"
+          },
+          "build": {
+            "$ref": "#/components/schemas/BuildResource"
+          },
+          "hasComment": {
+            "type": "boolean"
+          },
+          "user": {
+            "$ref": "#/components/schemas/BasicUserResource"
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "buildLabel": {
+            "type": "string"
+          },
+          "buildUrl": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KATALON",
+              "BDD"
+            ]
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobResource"
+            }
+          },
+          "useTestCloudTunnel": {
+            "type": "boolean"
+          },
+          "getkEyesExecution": {
+            "$ref": "#/components/schemas/KEyesExecutionResource"
+          }
+        }
+      },
+      "BasicExecutionResource": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "ERROR",
+              "INCOMPLETE",
+              "RUNNING",
+              "SKIPPED",
+              "NOT_RUN"
+            ]
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "elapsedDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalSkippedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "buildId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionStage": {
+            "type": "string",
+            "enum": [
+              "RUNNING",
+              "COMPLETED",
+              "TERMINATE",
+              "ANALYZING",
+              "ANALYZED",
+              "IMPORTING",
+              "ERROR"
+            ]
+          },
+          "hasComment": {
+            "type": "boolean"
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "buildLabel": {
+            "type": "string"
+          },
+          "buildUrl": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KATALON",
+              "BDD"
+            ]
+          },
+          "useTestCloudTunnel": {
+            "type": "boolean"
+          }
+        }
+      },
+      "GetExecutionResource": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "ERROR",
+              "INCOMPLETE",
+              "RUNNING",
+              "SKIPPED",
+              "NOT_RUN"
+            ]
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "elapsedDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalSkippedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "project": {
+            "$ref": "#/components/schemas/BasicProjectResource"
+          },
+          "buildId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionStage": {
+            "type": "string",
+            "enum": [
+              "RUNNING",
+              "COMPLETED",
+              "TERMINATE",
+              "ANALYZING",
+              "ANALYZED",
+              "IMPORTING",
+              "ERROR"
+            ]
+          },
+          "webUrl": {
+            "type": "string"
+          },
+          "testSuiteCollections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTestSuiteCollectionEntity"
+            }
+          },
+          "executionTestSuiteResources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetExecutionTestSuite"
+            }
+          },
+          "release": {
+            "$ref": "#/components/schemas/BasicReleaseResource"
+          },
+          "build": {
+            "$ref": "#/components/schemas/BasicBuildResource"
+          },
+          "hasComment": {
+            "type": "boolean"
+          },
+          "user": {
+            "$ref": "#/components/schemas/BasicUserResource"
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "buildLabel": {
+            "type": "string"
+          },
+          "buildUrl": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KATALON",
+              "BDD"
+            ]
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BasicJobResource"
+            }
+          },
+          "useTestCloudTunnel": {
+            "type": "boolean"
+          },
+          "kEyesExecution": {
+            "$ref": "#/components/schemas/GetKEyesExecution"
+          }
+        }
+      },
+      "ExecutionTestCaseResource": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "ERROR",
+              "INCOMPLETE",
+              "RUNNING",
+              "SKIPPED",
+              "NOT_RUN"
+            ]
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "elapsedDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalSkippedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionOrder": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testCaseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ExecutionTestResultIdentifyResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "ExecutionTestResultResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testCase": {
+            "$ref": "#/components/schemas/TestCaseResource"
+          },
+          "execution": {
+            "$ref": "#/components/schemas/BasicExecutionResource"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/PlatformResource"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "ERROR",
+              "INCOMPLETE",
+              "RUNNING",
+              "SKIPPED",
+              "NOT_RUN"
+            ]
+          },
+          "sameStatusPeriod": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "errorDetailsId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "stdoutId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "descriptionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "logId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "attachments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileResource"
+            }
+          },
+          "testResultAssertionsFailed": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestResultAssertionFailedResource"
+            }
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "sameFailureResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExecutionTestResultIdentifyResource"
+            }
+          },
+          "testSuite": {
+            "$ref": "#/components/schemas/BasicTestSuiteResource"
+          },
+          "executionTestSuite": {
+            "$ref": "#/components/schemas/GetExecutionTestSuite"
+          },
+          "profile": {
+            "type": "string"
+          },
+          "hasComment": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "errorDetail": {
+            "type": "string"
+          },
+          "webUrl": {
+            "type": "string"
+          },
+          "externalIssues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalIssueResource"
+            }
+          },
+          "failedTestResultCategory": {
+            "type": "string",
+            "enum": [
+              "APPLICATION",
+              "AUTOMATION",
+              "ENVIRONMENT",
+              "UNKNOWN"
+            ]
+          },
+          "totalTestObject": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDefects": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalAssertion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "passedAssertion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "failedAssertion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "retried": {
+            "type": "boolean"
+          },
+          "lastRetryTestId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currentRetry": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "originalStatus": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "ERROR",
+              "INCOMPLETE",
+              "RUNNING",
+              "SKIPPED",
+              "NOT_RUN"
+            ]
+          },
+          "lastChangedBy": {
+            "$ref": "#/components/schemas/BasicUserResource"
+          },
+          "errorKeyword": {
+            "type": "string"
+          },
+          "urlId": {
+            "type": "string"
+          },
+          "statusEdited": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ExecutionTestSuiteResource": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "ERROR",
+              "INCOMPLETE",
+              "RUNNING",
+              "SKIPPED",
+              "NOT_RUN"
+            ]
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "elapsedDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalSkippedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDiffIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "execution": {
+            "$ref": "#/components/schemas/BasicExecutionResource"
+          },
+          "testSuite": {
+            "$ref": "#/components/schemas/BasicExecutionResource"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/PlatformResource"
+          },
+          "executionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hasComment": {
+            "type": "boolean"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "GetExecutionTestSuite": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "FAILED",
+              "ERROR",
+              "INCOMPLETE",
+              "RUNNING",
+              "SKIPPED",
+              "NOT_RUN"
+            ]
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "elapsedDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPassedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalFailedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalErrorTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalIncompleteTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalSkippedTests": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "execution": {
+            "$ref": "#/components/schemas/BasicExecutionResource"
+          },
+          "testSuite": {
+            "$ref": "#/components/schemas/BasicTestSuiteResource"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/PlatformResource"
+          },
+          "executionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalIssueResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "issueId": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "issueTypeIcon": {
+            "type": "string"
+          },
+          "issueTypeName": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "featureName": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalProjectResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "externalProjectId": {
+            "type": "string"
+          },
+          "externalProjectKey": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ExternalReleaseResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "releaseId": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean"
+          },
+          "released": {
+            "type": "boolean"
+          },
+          "externalProject": {
+            "$ref": "#/components/schemas/ExternalProjectResource"
+          },
+          "webUrl": {
+            "type": "string"
+          },
+          "jiraReleaseStatus": {
+            "type": "string",
+            "enum": [
+              "RELEASED",
+              "UNRELEASED"
+            ]
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "releaseDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "FileResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "uploadFileId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "self": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "uploadUrl": {
+            "type": "string"
+          },
+          "signedUrl": {
+            "type": "string"
+          },
+          "thumbnailUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateGitRepositoryResource": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "eb5dadaa616ce"
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the test project"
+          },
+          "repository": {
+            "type": "string",
+            "description": "The URL to the Git repository."
+          },
+          "branch": {
+            "type": "string",
+            "description": "The Git branch in use."
+          },
+          "username": {
+            "type": "string",
+            "description": "The username for the Git account."
+          },
+          "password": {
+            "type": "string",
+            "description": "The password for the Git account."
+          },
+          "accessKeyId": {
+            "type": "string"
+          },
+          "secretAccessKey": {
+            "type": "string",
+            "description": "The access key for authentication and authorizfation."
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the project associated with this script repository."
+          },
+          "description": {
+            "type": "string"
+          },
+          "vcsType": {
+            "type": "string",
+            "enum": [
+              "GITHUB",
+              "GITLAB",
+              "BITBUCKET",
+              "OTHERS",
+              "AZURE",
+              "AWS"
+            ],
+            "description": "The Git service type."
+          },
+          "shouldMergeTestResultsForNewScriptRepo": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "repository",
+          "branch",
+          "username",
+          "password",
+          "vcsType"
+        ]
+      },
+      "UpdateGitRepositoryResource": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "The ID of the Git script repository object. Can be retrieved by the test project GET request."
+              },
+              "testProjectId": {
+                "type": "integer",
+                "format": "int64"
+              }
+            },
+            "required": [
+              "testProjectId"
+            ]
+          },
+          {
+            "$ref": "#/components/schemas/CreateGitRepositoryResource"
+          }
+        ]
+      },
+      "GitRepositoryResource": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UpdateGitRepositoryResource"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "teamId": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        ]
+      },
+      "IgnoringZoneResource": {
+        "type": "object",
+        "properties": {
+          "uuid": {
+            "type": "string"
+          },
+          "x": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "y": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "w": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "h": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ALL",
+              "SINGLE"
+            ]
+          }
+        }
+      },
+      "IncidentResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "urlIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "executionTestResultIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "order": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "JobResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "buildNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "QUEUED",
+              "RUNNING",
+              "FAILED",
+              "SUCCESS",
+              "CANCELED",
+              "ERROR",
+              "WAIT_FOR_TRIGGER",
+              "EXPIRED"
+            ]
+          },
+          "queuedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stopTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/BasicTestProjectResource"
+          },
+          "execution": {
+            "$ref": "#/components/schemas/BasicExecutionResource"
+          },
+          "agent": {
+            "$ref": "#/components/schemas/AgentResource"
+          },
+          "testCloudAgent": {
+            "$ref": "#/components/schemas/TestCloudAgentResource"
+          },
+          "k8sAgent": {
+            "$ref": "#/components/schemas/K8SAgentResource"
+          },
+          "circleCiAgent": {
+            "$ref": "#/components/schemas/CircleCIAgentResource"
+          },
+          "runConfiguration": {
+            "$ref": "#/components/schemas/BasicRunConfigurationResource"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "parameter": {
+            "$ref": "#/components/schemas/TriggerBuildParameter"
+          },
+          "triggerBy": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "SCHEDULE"
+            ]
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "triggerAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/BasicUserResource"
+          },
+          "scheduler": {
+            "$ref": "#/components/schemas/BasicSchedulerResource"
+          },
+          "project": {
+            "$ref": "#/components/schemas/BasicProjectResource"
+          },
+          "processId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nodeStatus": {
+            "type": "string",
+            "enum": [
+              "PENDING_CANCELED",
+              "CANCELED"
+            ]
+          },
+          "runConfigurationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "BasicJobResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "buildNumber": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "QUEUED",
+              "RUNNING",
+              "FAILED",
+              "SUCCESS",
+              "CANCELED",
+              "ERROR",
+              "WAIT_FOR_TRIGGER",
+              "EXPIRED"
+            ]
+          },
+          "queuedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stopTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/BasicTestProjectResource"
+          },
+          "agent": {
+            "$ref": "#/components/schemas/AgentResource"
+          },
+          "testCloudAgent": {
+            "$ref": "#/components/schemas/TestCloudAgentResource"
+          },
+          "k8sAgent": {
+            "$ref": "#/components/schemas/K8SAgentResource"
+          },
+          "circleCiAgent": {
+            "$ref": "#/components/schemas/CircleCIAgentResource"
+          },
+          "runConfiguration": {
+            "$ref": "#/components/schemas/BasicRunConfigurationResource"
+          },
+          "order": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "triggerBy": {
+            "type": "string",
+            "enum": [
+              "MANUAL",
+              "SCHEDULE"
+            ]
+          },
+          "duration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "triggerAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "scheduler": {
+            "$ref": "#/components/schemas/BasicSchedulerResource"
+          },
+          "processId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nodeStatus": {
+            "type": "string",
+            "enum": [
+              "PENDING_CANCELED",
+              "CANCELED"
+            ]
+          },
+          "runConfigurationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "K8SAgentResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "certificateAuthority": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "namespace": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          },
+          "cluster": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "accessKey": {
+            "type": "string"
+          },
+          "privateAccessKey": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "apiKey": {
+            "type": "string"
+          },
+          "authenticationType": {
+            "type": "string",
+            "enum": [
+              "BASIC_AUTH",
+              "BEARER_TOKEN",
+              "EKS_AUTH"
+            ]
+          }
+        }
+      },
+      "KEyesExecutionResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "RUNNING",
+              "ANALYSING",
+              "UNRESOLVED",
+              "PASSED",
+              "FAILED"
+            ]
+          },
+          "execution": {
+            "$ref": "#/components/schemas/ExecutionResource"
+          },
+          "totalCheckpoints": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "passedCheckpoints": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "failedCheckpoints": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "unresolvedCheckpoints": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "unsaved": {
+            "type": "boolean"
+          },
+          "baselineCollection": {
+            "$ref": "#/components/schemas/BaselineCollectionResource"
+          }
+        }
+      },
+      "GetKEyesExecution": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "RUNNING",
+              "ANALYSING",
+              "UNRESOLVED",
+              "PASSED",
+              "FAILED"
+            ]
+          },
+          "execution": {
+            "$ref": "#/components/schemas/BasicExecutionResource"
+          },
+          "totalCheckpoints": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "passedCheckpoints": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "failedCheckpoints": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "unresolvedCheckpoints": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "unsaved": {
+            "type": "boolean"
+          }
+        },
+        "title": ""
+      },
+      "KSFile": {
+        "type": "object",
+        "properties": {
+          "contentUrl": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "writeMode": {
+            "type": "string",
+            "enum": [
+              "OVERRIDE",
+              "SKIP_IF_EXISTS"
+            ]
+          }
+        }
+      },
+      "OrganizationFeatureFlagResource": {
+        "type": "object",
+        "properties": {
+          "organizationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "subDomain": {
+            "type": "boolean"
+          },
+          "strictDomain": {
+            "type": "boolean"
+          },
+          "sso": {
+            "type": "boolean"
+          },
+          "whitelistIp": {
+            "type": "boolean"
+          },
+          "circleCi": {
+            "type": "boolean",
+            "deprecated": true
+          },
+          "testOpsIntegration": {
+            "type": "boolean"
+          }
+        }
+      },
+      "OrganizationResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "OWNER",
+              "ADMIN",
+              "USER",
+              "BILLING_MANAGER"
+            ]
+          },
+          "orgFeatureFlag": {
+            "$ref": "#/components/schemas/OrganizationFeatureFlagResource"
+          },
+          "quotaKSE": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "machineQuotaKSE": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quotaUnlimitedKSE": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quotaEngine": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "machineQuotaEngine": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quotaUnlimitedEngine": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usedKSE": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usedUnlimitedKSE": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usedEngine": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usedUnlimitedEngine": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quotaTestOps": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usedTestOps": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "numberUser": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quotaFloatingEngine": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "usedFloatingEngine": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "canCreateOfflineKSE": {
+            "type": "boolean"
+          },
+          "canCreateOfflineUnlimitedKSE": {
+            "type": "boolean"
+          },
+          "canCreateOfflineRE": {
+            "type": "boolean"
+          },
+          "canCreateOfflineUnlimitedEngine": {
+            "type": "boolean"
+          },
+          "subscriptionExpiryDateEngine": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subscriptionExpiryDateUnlimitedEngine": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subscriptionExpiryDateKSE": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subscriptionExpiryDateUnlimitedKSE": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subscriptionExpiryDateFloatingEngine": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subscriptionExpiryDateTestOps": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subscribed": {
+            "type": "boolean"
+          },
+          "ksePaygo": {
+            "type": "boolean"
+          },
+          "krePaygo": {
+            "type": "boolean"
+          },
+          "paygoQuota": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "subdomainUrl": {
+            "type": "string"
+          },
+          "strictDomain": {
+            "type": "boolean"
+          },
+          "logoUrl": {
+            "type": "string"
+          },
+          "samlSSO": {
+            "type": "boolean"
+          },
+          "kreLicense": {
+            "type": "boolean"
+          },
+          "mostRecentProjectAccessedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "testOpsFeature": {
+            "type": "string",
+            "enum": [
+              "KSE",
+              "ENGINE",
+              "TESTOPS",
+              "FLOATING_ENGINE",
+              "UNLIMITED_KSE",
+              "UNLIMITED_ENGINE",
+              "TESTOPS_BUSINESS",
+              "TESTOPS_ENTERPRISE",
+              "PER_USER_KSE",
+              "TESTCLOUD_MINUTE",
+              "TESTCLOUD_SESSION_WEB",
+              "VISUAL_TESTING_PRO",
+              "TESTOPS_PLATFORM"
+            ]
+          },
+          "platformFeature": {
+            "type": "string",
+            "enum": [
+              "KSE",
+              "ENGINE",
+              "TESTOPS",
+              "FLOATING_ENGINE",
+              "UNLIMITED_KSE",
+              "UNLIMITED_ENGINE",
+              "TESTOPS_BUSINESS",
+              "TESTOPS_ENTERPRISE",
+              "PER_USER_KSE",
+              "TESTCLOUD_MINUTE",
+              "TESTCLOUD_SESSION_WEB",
+              "VISUAL_TESTING_PRO",
+              "TESTOPS_PLATFORM"
+            ]
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "FREE",
+              "PROFESSIONAL",
+              "BUSINESS",
+              "ENTERPRISE"
+            ]
+          },
+          "requestedUserVerified": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PlatformResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "osName": {
+            "type": "string"
+          },
+          "osVersion": {
+            "type": "string"
+          },
+          "browserName": {
+            "type": "string"
+          },
+          "browserVersion": {
+            "type": "string"
+          },
+          "deviceName": {
+            "type": "string"
+          },
+          "appName": {
+            "type": "string"
+          }
+        }
+      },
+      "ProjectResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "team": {
+            "$ref": "#/components/schemas/TeamResource"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ARCHIVE",
+              "ACTIVE"
+            ]
+          }
+        }
+      },
+      "GetProjectResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "team": {
+            "$ref": "#/components/schemas/GetTeamResource"
+          },
+          "timezone": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ARCHIVE",
+              "ACTIVE"
+            ]
+          }
+        },
+        "title": ""
+      },
+      "PageProjectResource": {
+        "type": "object",
+        "properties": {
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/Sort"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetProjectResource"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "BasicProjectResource": {
+        "type": "object",
+        "title": "",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ARCHIVE",
+              "ACTIVE"
+            ]
+          }
+        }
+      },
+      "ReleaseResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "externalRelease": {
+            "$ref": "#/components/schemas/ExternalReleaseResource"
+          },
+          "releaseStatistics": {
+            "$ref": "#/components/schemas/ReleaseStatisticsResource"
+          },
+          "builds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuildResource"
+            }
+          },
+          "releaseStatus": {
+            "type": "string",
+            "enum": [
+              "NOT_READY",
+              "READY",
+              "EMPTY"
+            ]
+          }
+        }
+      },
+      "CreateReleaseResource": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "4d6925de2d819"
+        },
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of the release."
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date",
+            "description": "The start date of the release."
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date",
+            "description": "The end date of the release."
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the release."
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The ID of the associated project."
+          },
+          "externalRelease": {
+            "type": "object",
+            "description": "The linked Jira release.",
+            "properties": {
+              "releaseId": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "archived": {
+                "type": "boolean"
+              },
+              "released": {
+                "type": "boolean"
+              },
+              "externalProject": {
+                "type": "object",
+                "properties": {
+                  "externalProjectId": {
+                    "type": "string"
+                  },
+                  "externalProjectKey": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              },
+              "startDate": {
+                "type": "string",
+                "format": "date"
+              },
+              "releaseDate": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        },
+        "required": [
+          "name",
+          "projectId"
+        ]
+      },
+      "EditReleaseResource": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "format": "int64",
+                "description": "The ID of the release."
+              }
+            },
+            "required": [
+              "id"
+            ]
+          },
+          {
+            "$ref": "#/components/schemas/CreateReleaseResource"
+          }
+        ]
+      },
+      "BasicReleaseResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date"
+          },
+          "description": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "closed": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "releaseStatus": {
+            "type": "string",
+            "enum": [
+              "NOT_READY",
+              "READY",
+              "EMPTY"
+            ]
+          }
+        }
+      },
+      "ReleaseStatisticsResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPassed": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalFailed": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalExecution": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDefect": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalDuration": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "RunConfigurationResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testProjectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "releaseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testSuiteCollectionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testSuiteId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionProfileId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "baselineCollectionGroupOrder": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "timeOut": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "kobitonDeviceId": {
+            "type": "string"
+          },
+          "configType": {
+            "type": "string",
+            "enum": [
+              "TSC",
+              "COMMAND",
+              "GENERIC_COMMAND",
+              "TEST_SUITE"
+            ]
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/TestProjectResource"
+          },
+          "agents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentResource"
+            }
+          },
+          "testCloudAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCloudAgentResource"
+            }
+          },
+          "k8sAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/K8SAgentResource"
+            }
+          },
+          "circleCIAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CircleCIAgentResource"
+            }
+          },
+          "testCloudTestSuiteCollectionAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCloudTestSuiteCollectionAgentResource"
+            }
+          },
+          "cloudType": {
+            "type": "string",
+            "enum": [
+              "K8S",
+              "LOCAL_AGENT",
+              "K8S_AGENT",
+              "CIRCLE_CI_AGENT",
+              "TEST_CLOUD_AGENT"
+            ]
+          },
+          "latestJob": {
+            "$ref": "#/components/schemas/JobResource"
+          },
+          "genericCommand": {
+            "type": "string"
+          },
+          "ksVersion": {
+            "type": "string"
+          },
+          "ksLocation": {
+            "type": "string"
+          },
+          "nextRunScheduler": {
+            "$ref": "#/components/schemas/SchedulerResource"
+          },
+          "release": {
+            "$ref": "#/components/schemas/ReleaseResource"
+          },
+          "build": {
+            "$ref": "#/components/schemas/BuildResource"
+          },
+          "executionMode": {
+            "type": "string",
+            "enum": [
+              "SEQUENTIAL",
+              "PARALLEL"
+            ]
+          },
+          "enabledKobitonIntegration": {
+            "type": "boolean"
+          },
+          "enabledTestCloudTunnel": {
+            "type": "boolean"
+          },
+          "triggerMode": {
+            "type": "string",
+            "enum": [
+              "TESTOPS_SCHEDULER",
+              "MANUAL_TRIGGER"
+            ]
+          },
+          "browserType": {
+            "type": "string",
+            "enum": [
+              "CHROME",
+              "FIREFOX",
+              "SAFARI",
+              "EDGE",
+              "EDGE_CHROMIUM",
+              "WEB_SERVICE",
+              "CHROME_HEADLESS",
+              "FIREFOX_HEADLESS",
+              "ALL",
+              "MOBILE_BROWSERS",
+              "MOBILE_NATIVE"
+            ]
+          }
+        }
+      },
+      "EditRunConfigurationResource": {
+        "type": "object",
+        "x-examples": {
+          "Example 1": {
+            "name": "API execution",
+            "projectId": 713995,
+            "teamId": 242852,
+            "browserType": "CHROME",
+            "testProjectId": 413207,
+            "testSuiteId": 1021174,
+            "configType": "TEST_SUITE",
+            "cloudType": "TEST_CLOUD_AGENT",
+            "ksVersion": "8.5.2",
+            "executionMode": "SEQUENTIAL",
+            "executionProfileId": 103622
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the run configuration."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the run configuration."
+          },
+          "command": {
+            "type": "string",
+            "description": "Execution command."
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the associated project."
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the associated team."
+          },
+          "testProjectId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the script repository."
+          },
+          "releaseId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the linked release."
+          },
+          "testSuiteCollectionId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the test suite collection to execute."
+          },
+          "testSuiteId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the test suite to execute."
+          },
+          "executionProfileId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the execution profile."
+          },
+          "baselineCollectionGroupOrder": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the Visual Testing baseline collection, applied when Visual Testing is enabled."
+          },
+          "timeOut": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Time limit for this execution."
+          },
+          "kobitonDeviceId": {
+            "type": "string",
+            "description": "ID of the Kobiton device, applied when Kobiton integration is enabled."
+          },
+          "configType": {
+            "type": "string",
+            "enum": [
+              "TSC",
+              "COMMAND",
+              "GENERIC_COMMAND",
+              "TEST_SUITE"
+            ],
+            "description": "Configuration type."
+          },
+          "agents": {
+            "type": "array",
+            "description": "Local agents to execute.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "testCloudAgents": {
+            "type": "array",
+            "description": "TestCloud agents to execute.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "browser": {
+                  "description": "Name of the browser in lowercase (e.g., chrome, firefox, msedge, safari).",
+                  "type": "string",
+                  "default": "chrome",
+                  "example": "chrome"
+                },
+                "browserVersion": {
+                  "type": "string",
+                  "default": "114",
+                  "example": "114",
+                  "description": "Version of the selected browser."
+                },
+                "headless": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "os": {
+                  "type": "string",
+                  "description": "Name of the operating system in lowercase (e.g., windows, macos, linux).",
+                  "default": "windows",
+                  "example": "windows"
+                }
+              }
+            }
+          },
+          "k8sAgents": {
+            "type": "array",
+            "description": "Kubernetes agents to execute.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "circleCIAgents": {
+            "type": "array",
+            "description": "CircleCI agent to execute.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "cloudType": {
+            "type": "string",
+            "enum": [
+              "K8S",
+              "LOCAL_AGENT",
+              "K8S_AGENT",
+              "CIRCLE_CI_AGENT",
+              "TEST_CLOUD_AGENT"
+            ],
+            "description": "Type of agent that executes the tests."
+          },
+          "genericCommand": {
+            "type": "string",
+            "description": "Execution command configuration in other platforms."
+          },
+          "ksVersion": {
+            "type": "string",
+            "description": "Version of Katalon Runtime Engine."
+          },
+          "ksLocation": {
+            "type": "string",
+            "description": "Location of the Katalon Rutime Engine instance when executing with local agent."
+          },
+          "executionMode": {
+            "type": "string",
+            "enum": [
+              "SEQUENTIAL",
+              "PARALLEL"
+            ],
+            "description": "Sequential or parallel execution."
+          },
+          "enabledKobitonIntegration": {
+            "type": "boolean",
+            "description": "`true` if you want to enable Kobiton integration."
+          },
+          "enabledTestCloudTunnel": {
+            "type": "boolean",
+            "description": "`true` if you want to enable TestCloud Tunnel."
+          },
+          "triggerMode": {
+            "type": "string",
+            "enum": [
+              "TESTOPS_SCHEDULER",
+              "MANUAL_TRIGGER"
+            ],
+            "description": "How the execution should be triggered."
+          },
+          "browserType": {
+            "type": "string",
+            "enum": [
+              "CHROME",
+              "FIREFOX",
+              "SAFARI",
+              "EDGE",
+              "EDGE_CHROMIUM",
+              "WEB_SERVICE",
+              "CHROME_HEADLESS",
+              "FIREFOX_HEADLESS",
+              "ALL",
+              "MOBILE_BROWSERS",
+              "MOBILE_NATIVE"
+            ],
+            "description": "Browser/mobile environment to execute the tests."
+          }
+        },
+        "required": [
+          "projectId",
+          "teamId",
+          "testProjectId",
+          "configType",
+          "cloudType"
+        ]
+      },
+      "BasicRunConfigurationResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testProjectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "releaseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testSuiteCollectionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testSuiteId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionProfileId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "baselineCollectionGroupOrder": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "timeOut": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "kobitonDeviceId": {
+            "type": "string"
+          },
+          "configType": {
+            "type": "string",
+            "enum": [
+              "TSC",
+              "COMMAND",
+              "GENERIC_COMMAND",
+              "TEST_SUITE"
+            ]
+          },
+          "cloudType": {
+            "type": "string",
+            "enum": [
+              "K8S",
+              "LOCAL_AGENT",
+              "K8S_AGENT",
+              "CIRCLE_CI_AGENT",
+              "TEST_CLOUD_AGENT"
+            ]
+          },
+          "genericCommand": {
+            "type": "string"
+          },
+          "ksVersion": {
+            "type": "string"
+          },
+          "ksLocation": {
+            "type": "string"
+          },
+          "executionMode": {
+            "type": "string",
+            "enum": [
+              "SEQUENTIAL",
+              "PARALLEL"
+            ]
+          },
+          "enabledKobitonIntegration": {
+            "type": "boolean"
+          },
+          "enabledTestCloudTunnel": {
+            "type": "boolean"
+          },
+          "triggerMode": {
+            "type": "string",
+            "enum": [
+              "TESTOPS_SCHEDULER",
+              "MANUAL_TRIGGER"
+            ]
+          },
+          "browserType": {
+            "type": "string",
+            "enum": [
+              "CHROME",
+              "FIREFOX",
+              "SAFARI",
+              "EDGE",
+              "EDGE_CHROMIUM",
+              "WEB_SERVICE",
+              "CHROME_HEADLESS",
+              "FIREFOX_HEADLESS",
+              "ALL",
+              "MOBILE_BROWSERS",
+              "MOBILE_NATIVE"
+            ]
+          }
+        }
+      },
+      "GetRunConfiguration": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testProjectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "releaseId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testSuiteCollectionId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testSuiteId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionProfileId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "baselineCollectionGroupOrder": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "timeOut": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "kobitonDeviceId": {
+            "type": "string"
+          },
+          "configType": {
+            "type": "string",
+            "enum": [
+              "TSC",
+              "COMMAND",
+              "GENERIC_COMMAND",
+              "TEST_SUITE"
+            ]
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/BasicTestProjectResource"
+          },
+          "agents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentResource"
+            }
+          },
+          "testCloudAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCloudAgentResource"
+            }
+          },
+          "k8sAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/K8SAgentResource"
+            }
+          },
+          "circleCIAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CircleCIAgentResource"
+            }
+          },
+          "testCloudTestSuiteCollectionAgents": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCloudTestSuiteCollectionAgentResource"
+            }
+          },
+          "cloudType": {
+            "type": "string",
+            "enum": [
+              "K8S",
+              "LOCAL_AGENT",
+              "K8S_AGENT",
+              "CIRCLE_CI_AGENT",
+              "TEST_CLOUD_AGENT"
+            ]
+          },
+          "latestJob": {
+            "$ref": "#/components/schemas/JobResource"
+          },
+          "genericCommand": {
+            "type": "string"
+          },
+          "ksVersion": {
+            "type": "string"
+          },
+          "ksLocation": {
+            "type": "string"
+          },
+          "nextRunScheduler": {
+            "$ref": "#/components/schemas/SchedulerResource"
+          },
+          "release": {
+            "$ref": "#/components/schemas/BasicReleaseResource"
+          },
+          "build": {
+            "$ref": "#/components/schemas/BasicBuildResource"
+          },
+          "executionMode": {
+            "type": "string",
+            "enum": [
+              "SEQUENTIAL",
+              "PARALLEL"
+            ]
+          },
+          "enabledKobitonIntegration": {
+            "type": "boolean"
+          },
+          "enabledTestCloudTunnel": {
+            "type": "boolean"
+          },
+          "triggerMode": {
+            "type": "string",
+            "enum": [
+              "TESTOPS_SCHEDULER",
+              "MANUAL_TRIGGER"
+            ]
+          },
+          "browserType": {
+            "type": "string",
+            "enum": [
+              "CHROME",
+              "FIREFOX",
+              "SAFARI",
+              "EDGE",
+              "EDGE_CHROMIUM",
+              "WEB_SERVICE",
+              "CHROME_HEADLESS",
+              "FIREFOX_HEADLESS",
+              "ALL",
+              "MOBILE_BROWSERS",
+              "MOBILE_NATIVE"
+            ]
+          }
+        }
+      },
+      "SchedulerResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nextTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "interval": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "intervalUnit": {
+            "type": "string",
+            "enum": [
+              "MINUTE",
+              "HOUR",
+              "DAY",
+              "WEEK",
+              "MONTH"
+            ]
+          },
+          "runConfigurationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "runConfiguration": {
+            "$ref": "#/components/schemas/BasicRunConfigurationResource"
+          },
+          "exceededLimitTime": {
+            "type": "boolean"
+          }
+        }
+      },
+      "BasicSchedulerResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the scheduler object."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the scheduler."
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time when exection starts."
+          },
+          "nextTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time of the next execution."
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time when the execution should ends."
+          },
+          "active": {
+            "type": "boolean",
+            "description": "`true` if the execution is still scheduled or saved for manual trigger."
+          },
+          "interval": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Number of interval units between two consecutive executions."
+          },
+          "intervalUnit": {
+            "type": "string",
+            "enum": [
+              "MINUTE",
+              "HOUR",
+              "DAY",
+              "WEEK",
+              "MONTH"
+            ],
+            "description": "Interval type."
+          },
+          "runConfigurationId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID of the associated run confirguration."
+          },
+          "exceededLimitTime": {
+            "type": "boolean",
+            "description": "`true` if the execution exceeded the TestCloud execution time limit."
+          }
+        }
+      },
+      "TeamResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "OWNER",
+              "ADMIN",
+              "USER"
+            ]
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserResource"
+            }
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationResource"
+          },
+          "organizationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "ScreenshotResource": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "width": {
+            "type": "number",
+            "format": "double"
+          },
+          "height": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "GetTeamResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationResource"
+          },
+          "organizationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "TestCaseResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "webUrl": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/BasicProjectResource"
+          },
+          "lastExecutionTestCase": {
+            "$ref": "#/components/schemas/ExecutionTestCaseResource"
+          },
+          "externalIssues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExternalIssueResource"
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TEST_CASE",
+              "SCENARIO"
+            ]
+          },
+          "averageDuration": {
+            "type": "number",
+            "format": "double"
+          },
+          "maxDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "flakiness": {
+            "type": "number",
+            "format": "double"
+          },
+          "maintainer": {
+            "$ref": "#/components/schemas/BasicUserResource"
+          },
+          "testResultAssertion": {
+            "$ref": "#/components/schemas/TestResultAssertionResource"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/BasicTestProjectResource"
+          },
+          "numberOfExecutions": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "TestCloudAgentResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "os": {
+            "type": "string"
+          },
+          "osVersion": {
+            "type": "string"
+          },
+          "browser": {
+            "type": "string"
+          },
+          "browserVersion": {
+            "type": "string"
+          },
+          "deviceName": {
+            "type": "string"
+          },
+          "appId": {
+            "type": "string"
+          },
+          "appGroupId": {
+            "type": "string"
+          },
+          "appName": {
+            "type": "string"
+          },
+          "numExecutingJobs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numAssignedJobs": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "apiKey": {
+            "type": "string"
+          },
+          "totalDuration": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "headless": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TestCloudTestSuiteCollectionAgentResource": {
+        "type": "object",
+        "properties": {
+          "testSuiteCollectionConfigurationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "testCloudAgent": {
+            "$ref": "#/components/schemas/TestCloudAgentResource"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "TestFolderResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "rawPath": {
+            "type": "string"
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/BasicTestProjectResource"
+          },
+          "treePath": {
+            "type": "string"
+          },
+          "parentId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "TestProjectResource": {
+        "allOf": [
+          {
+            "type": "object",
+            "properties": {
+              "gitRepository": {
+                "$ref": "#/components/schemas/GitRepositoryResource"
+              },
+              "testSuiteCollections": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/BasicTestSuiteCollectionResource"
+                }
+              }
+            }
+          },
+          {
+            "$ref": "#/components/schemas/BasicTestProjectResource"
+          }
+        ]
+      },
+      "BasicTestProjectResource": {
+        "type": "object",
+        "title": "",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "defaultTestProject": {
+            "type": "boolean"
+          },
+          "uploadFileId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "projectId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "uploadFileName": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KS",
+              "GIT"
+            ]
+          },
+          "dirty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "TestResultAssertionFailedResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "executionTestResultId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "stacktrace": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "logTime": {
+            "type": "string"
+          }
+        }
+      },
+      "TestResultAssertionResource": {
+        "type": "object",
+        "properties": {
+          "executionTestResultId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalAssertion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "passedAssertion": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "failedAssertion": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "TestSuiteCollectionConfigurationResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "profileName": {
+            "type": "string"
+          },
+          "browserType": {
+            "type": "string",
+            "enum": [
+              "CHROME",
+              "FIREFOX",
+              "SAFARI",
+              "EDGE",
+              "EDGE_CHROMIUM",
+              "WEB_SERVICE",
+              "CHROME_HEADLESS",
+              "FIREFOX_HEADLESS",
+              "ALL",
+              "MOBILE_BROWSERS",
+              "MOBILE_NATIVE"
+            ]
+          },
+          "runEnabled": {
+            "type": "boolean"
+          },
+          "sortOrder": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "testSuiteEntity": {
+            "type": "string"
+          }
+        }
+      },
+      "TestSuiteCollectionEntityResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectResource"
+          },
+          "path": {
+            "type": "string"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTestSuiteCollectionEntity": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/GetProjectResource"
+          },
+          "path": {
+            "type": "string"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "BasicTestSuiteCollectionResource": {
+        "type": "object",
+        "x-stoplight": {
+          "id": "946ce724b811f"
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "TestSuiteCollectionResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectResource"
+          },
+          "testSuiteCollectionConfigurations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestSuiteCollectionConfigurationResource"
+            }
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "TestSuiteResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "testResults": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ExecutionTestResultResource"
+            }
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectResource"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "lastExecutionTestSuite": {
+            "$ref": "#/components/schemas/ExecutionTestSuiteResource"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "testCases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCaseResource"
+            }
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/TestProjectResource"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserResource"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KATALON_STUDIO",
+              "TESTOPS"
+            ]
+          },
+          "testFolder": {
+            "$ref": "#/components/schemas/TestFolderResource"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        },
+        "title": ""
+      },
+      "BasicTestSuiteResource": {
+        "type": "object",
+        "title": "",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KATALON_STUDIO",
+              "TESTOPS"
+            ]
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateTestSuiteResource": {
+        "type": "object",
+        "description": "",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/BasicProjectResource"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/BasicTestProjectResource"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KATALON_STUDIO",
+              "TESTOPS"
+            ]
+          },
+          "testFolder": {
+            "$ref": "#/components/schemas/TestFolderResource"
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "GetTestSuiteResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/BasicProjectResource"
+          },
+          "alias": {
+            "type": "string"
+          },
+          "lastExecutionTestSuite": {
+            "$ref": "#/components/schemas/ExecutionTestSuiteResource"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "testProject": {
+            "$ref": "#/components/schemas/BasicTestProjectResource"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KATALON_STUDIO",
+              "TESTOPS"
+            ]
+          },
+          "urlId": {
+            "type": "string"
+          }
+        }
+      },
+      "TriggerBuildParameter": {
+        "type": "object",
+        "properties": {
+          "downloadUrl": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "environmentVariables": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnvironmentVariable"
+            }
+          },
+          "sessionId": {
+            "type": "string"
+          },
+          "ksVersion": {
+            "type": "string"
+          },
+          "ksLocation": {
+            "type": "string"
+          },
+          "configType": {
+            "type": "string",
+            "enum": [
+              "TSC",
+              "COMMAND",
+              "GENERIC_COMMAND",
+              "TEST_SUITE"
+            ]
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "KS",
+              "GIT"
+            ]
+          },
+          "gitRepositoryResource": {
+            "$ref": "#/components/schemas/GitRepositoryResource"
+          },
+          "testOpsDownloadUrl": {
+            "type": "string"
+          },
+          "extraFiles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/KSFile"
+            }
+          },
+          "organizationId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "UploadFileResource": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "TSC_EXECUTION",
+              "TS_EXECUTION",
+              "ATTACHMENT",
+              "PROPERTIES",
+              "HAR",
+              "UUID",
+              "ZIP",
+              "BDD",
+              "TESTOPS_REPORT_METADATA",
+              "TESTOPS_REPORT_EXECUTION",
+              "TESTOPS_REPORT_SUITES",
+              "TESTOPS_REPORT_RESULTS"
+            ]
+          },
+          "base64Content": {
+            "type": "string"
+          },
+          "fileHandleId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "thumbnailId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "UserOrganizationFeatureResource": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/UserResource"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "organizationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userEmail": {
+            "type": "string"
+          },
+          "organization": {
+            "$ref": "#/components/schemas/OrganizationResource"
+          },
+          "feature": {
+            "type": "string",
+            "enum": [
+              "KSE",
+              "ENGINE",
+              "TESTOPS",
+              "FLOATING_ENGINE",
+              "UNLIMITED_KSE",
+              "UNLIMITED_ENGINE",
+              "TESTOPS_BUSINESS",
+              "TESTOPS_ENTERPRISE",
+              "PER_USER_KSE",
+              "TESTCLOUD_MINUTE",
+              "TESTCLOUD_SESSION_WEB",
+              "VISUAL_TESTING_PRO",
+              "TESTOPS_PLATFORM"
+            ]
+          }
+        }
+      },
+      "UserResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "invitingUrl": {
+            "type": "string"
+          },
+          "avatar": {
+            "type": "string"
+          },
+          "configs": {
+            "$ref": "#/components/schemas/ConfigResource"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProjectResource"
+            }
+          },
+          "teams": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TeamResource"
+            }
+          },
+          "organizations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OrganizationResource"
+            }
+          },
+          "organizationFeature": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserOrganizationFeatureResource"
+            }
+          },
+          "trialExpirationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "surveyStatus": {
+            "type": "string",
+            "enum": [
+              "NOT_SUBMITTED",
+              "SUBMITTED",
+              "SKIPPED",
+              "OLD_USER"
+            ]
+          },
+          "sessionTimeout": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "businessUser": {
+            "type": "boolean"
+          },
+          "canCreateOfflineKSE": {
+            "type": "boolean"
+          },
+          "canCreateOfflineRE": {
+            "type": "boolean"
+          },
+          "samlSSO": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fullName": {
+            "type": "string"
+          }
+        }
+      },
+      "BasicUserResource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "email": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "invitingUrl": {
+            "type": "string"
+          },
+          "trialExpirationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "surveyStatus": {
+            "type": "string",
+            "enum": [
+              "NOT_SUBMITTED",
+              "SUBMITTED",
+              "SKIPPED",
+              "OLD_USER"
+            ]
+          },
+          "sessionTimeout": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "businessUser": {
+            "type": "boolean"
+          },
+          "canCreateOfflineKSE": {
+            "type": "boolean"
+          },
+          "canCreateOfflineRE": {
+            "type": "boolean"
+          },
+          "samlSSO": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "fullName": {
+            "type": "string"
+          }
+        }
+      },
+      "BuildInfo": {
+        "type": "object",
+        "properties": {
+          "build_num": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "job_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "build_time_millis": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "status": {
+            "type": "string"
+          },
+          "usage_queued_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stop_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "steps": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuildLog"
+            }
+          }
+        }
+      },
+      "BuildLog": {
+        "type": "object",
+        "properties": {
+          "logFileUrl": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "actions": {
+            "type": "array",
+            "writeOnly": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "SmartSchedulerResource": {
+        "type": "object",
+        "properties": {
+          "runConfiguration": {
+            "$ref": "#/components/schemas/RunConfigurationResource"
+          },
+          "scheduler": {
+            "$ref": "#/components/schemas/BasicSchedulerResource"
+          }
+        },
+        "title": ""
+      },
+      "EditSmartSchedulerResource": {
+        "type": "object",
+        "title": "",
+        "properties": {
+          "runConfiguration": {
+            "$ref": "#/components/schemas/EditRunConfigurationResource"
+          },
+          "scheduler": {
+            "$ref": "#/components/schemas/BasicSchedulerResource"
+          }
+        }
+      },
+      "CreateSmartSchedulerResource": {
+        "type": "object",
+        "properties": {
+          "runConfiguration": {
+            "$ref": "#/components/schemas/BasicRunConfigurationResource"
+          },
+          "scheduler": {
+            "$ref": "#/components/schemas/SchedulerResource"
+          }
+        }
+      },
+      "GetSmartScheduler": {
+        "type": "object",
+        "properties": {
+          "runConfiguration": {
+            "$ref": "#/components/schemas/GetRunConfiguration"
+          },
+          "scheduler": {
+            "$ref": "#/components/schemas/SchedulerResource"
+          }
+        },
+        "x-examples": {
+          "Example 1": {
+            "runConfiguration": {
+              "id": 0,
+              "name": "string",
+              "command": "string",
+              "projectId": 0,
+              "teamId": 0,
+              "testProjectId": 0,
+              "releaseId": 0,
+              "testSuiteCollectionId": 0,
+              "testSuiteId": 0,
+              "executionProfileId": 0,
+              "baselineCollectionGroupOrder": 0,
+              "timeOut": 0,
+              "kobitonDeviceId": "string",
+              "configType": "TSC",
+              "testProject": {
+                "id": 0,
+                "name": "string",
+                "description": "string",
+                "defaultTestProject": true,
+                "uploadFileId": 0,
+                "projectId": 0,
+                "teamId": 0,
+                "createdAt": "2019-08-24T14:15:22Z",
+                "uploadFileName": "string",
+                "type": "KS",
+                "dirty": true
+              },
+              "agents": [
+                {
+                  "id": 0,
+                  "name": "string",
+                  "ip": "string",
+                  "uuid": "string",
+                  "lastPing": "2019-08-24T14:15:22Z",
+                  "os": "string",
+                  "teamId": 0,
+                  "hostname": "string",
+                  "active": true,
+                  "threshold": 0,
+                  "numExecutingJobs": 0,
+                  "numAssignedJobs": 0,
+                  "agentVersion": "string",
+                  "deleted": true
+                }
+              ],
+              "testCloudAgents": [
+                {
+                  "id": 0,
+                  "name": "string",
+                  "os": "string",
+                  "osVersion": "string",
+                  "browser": "string",
+                  "browserVersion": "string",
+                  "deviceName": "string",
+                  "appId": "string",
+                  "appGroupId": "string",
+                  "appName": "string",
+                  "numExecutingJobs": 0,
+                  "numAssignedJobs": 0,
+                  "teamId": 0,
+                  "deleted": true,
+                  "apiKey": "string",
+                  "totalDuration": 0,
+                  "headless": true
+                }
+              ],
+              "k8sAgents": [
+                {
+                  "id": 0,
+                  "name": "string",
+                  "certificateAuthority": "string",
+                  "url": "string",
+                  "namespace": "string",
+                  "username": "string",
+                  "password": "string",
+                  "token": "string",
+                  "cluster": "string",
+                  "region": "string",
+                  "accessKey": "string",
+                  "privateAccessKey": "string",
+                  "teamId": 0,
+                  "apiKey": "string",
+                  "authenticationType": "BASIC_AUTH"
+                }
+              ],
+              "circleCIAgents": [
+                {
+                  "id": 0,
+                  "name": "string",
+                  "url": "string",
+                  "username": "string",
+                  "token": "string",
+                  "project": "string",
+                  "vcsType": "string",
+                  "branch": "string",
+                  "teamId": 0,
+                  "apiKey": "string"
+                }
+              ],
+              "testCloudTestSuiteCollectionAgents": [
+                {
+                  "testSuiteCollectionConfigurationId": 0,
+                  "testCloudAgent": {
+                    "id": 0,
+                    "name": "string",
+                    "os": "string",
+                    "osVersion": "string",
+                    "browser": "string",
+                    "browserVersion": "string",
+                    "deviceName": "string",
+                    "appId": "string",
+                    "appGroupId": "string",
+                    "appName": "string",
+                    "numExecutingJobs": 0,
+                    "numAssignedJobs": 0,
+                    "teamId": 0,
+                    "deleted": true,
+                    "apiKey": "string",
+                    "totalDuration": 0,
+                    "headless": true
+                  },
+                  "updatedAt": "2019-08-24T14:15:22Z"
+                }
+              ],
+              "cloudType": "K8S",
+              "latestJob": {
+                "id": 0,
+                "buildNumber": 0,
+                "status": "QUEUED",
+                "queuedAt": "2019-08-24T14:15:22Z",
+                "startTime": "2019-08-24T14:15:22Z",
+                "stopTime": "2019-08-24T14:15:22Z",
+                "testProject": {
+                  "id": 0,
+                  "name": "string",
+                  "description": "string",
+                  "defaultTestProject": true,
+                  "uploadFileId": 0,
+                  "projectId": 0,
+                  "teamId": 0,
+                  "createdAt": "2019-08-24T14:15:22Z",
+                  "uploadFileName": "string",
+                  "type": "KS",
+                  "dirty": true
+                },
+                "execution": {
+                  "status": "PASSED",
+                  "startTime": "2019-08-24T14:15:22Z",
+                  "endTime": "2019-08-24T14:15:22Z",
+                  "duration": 0,
+                  "elapsedDuration": 0,
+                  "totalTests": 0,
+                  "totalPassedTests": 0,
+                  "totalFailedTests": 0,
+                  "totalErrorTests": 0,
+                  "totalIncompleteTests": 0,
+                  "totalSkippedTests": 0,
+                  "id": 0,
+                  "projectId": 0,
+                  "buildId": 0,
+                  "order": 0,
+                  "executionStage": "RUNNING",
+                  "hasComment": true,
+                  "sessionId": "string",
+                  "buildLabel": "string",
+                  "buildUrl": "string",
+                  "type": "KATALON",
+                  "useTestCloudTunnel": true
+                },
+                "agent": {
+                  "id": 0,
+                  "name": "string",
+                  "ip": "string",
+                  "uuid": "string",
+                  "lastPing": "2019-08-24T14:15:22Z",
+                  "os": "string",
+                  "teamId": 0,
+                  "hostname": "string",
+                  "active": true,
+                  "threshold": 0,
+                  "numExecutingJobs": 0,
+                  "numAssignedJobs": 0,
+                  "agentVersion": "string",
+                  "deleted": true
+                },
+                "testCloudAgent": {
+                  "id": 0,
+                  "name": "string",
+                  "os": "string",
+                  "osVersion": "string",
+                  "browser": "string",
+                  "browserVersion": "string",
+                  "deviceName": "string",
+                  "appId": "string",
+                  "appGroupId": "string",
+                  "appName": "string",
+                  "numExecutingJobs": 0,
+                  "numAssignedJobs": 0,
+                  "teamId": 0,
+                  "deleted": true,
+                  "apiKey": "string",
+                  "totalDuration": 0,
+                  "headless": true
+                },
+                "k8sAgent": {
+                  "id": 0,
+                  "name": "string",
+                  "certificateAuthority": "string",
+                  "url": "string",
+                  "namespace": "string",
+                  "username": "string",
+                  "password": "string",
+                  "token": "string",
+                  "cluster": "string",
+                  "region": "string",
+                  "accessKey": "string",
+                  "privateAccessKey": "string",
+                  "teamId": 0,
+                  "apiKey": "string",
+                  "authenticationType": "BASIC_AUTH"
+                },
+                "circleCiAgent": {
+                  "id": 0,
+                  "name": "string",
+                  "url": "string",
+                  "username": "string",
+                  "token": "string",
+                  "project": "string",
+                  "vcsType": "string",
+                  "branch": "string",
+                  "teamId": 0,
+                  "apiKey": "string"
+                },
+                "runConfiguration": {
+                  "id": 0,
+                  "name": "string",
+                  "command": "string",
+                  "projectId": 0,
+                  "teamId": 0,
+                  "testProjectId": 0,
+                  "releaseId": 0,
+                  "testSuiteCollectionId": 0,
+                  "testSuiteId": 0,
+                  "executionProfileId": 0,
+                  "baselineCollectionGroupOrder": 0,
+                  "timeOut": 0,
+                  "kobitonDeviceId": "string",
+                  "configType": "TSC",
+                  "cloudType": "K8S",
+                  "genericCommand": "string",
+                  "ksVersion": "string",
+                  "ksLocation": "string",
+                  "executionMode": "SEQUENTIAL",
+                  "enabledKobitonIntegration": true,
+                  "enabledTestCloudTunnel": true,
+                  "triggerMode": "TESTOPS_SCHEDULER",
+                  "browserType": "CHROME"
+                },
+                "order": 0,
+                "parameter": {
+                  "downloadUrl": "string",
+                  "command": "string",
+                  "environmentVariables": [
+                    {
+                      "name": "string",
+                      "value": "string"
+                    }
+                  ],
+                  "sessionId": "string",
+                  "ksVersion": "string",
+                  "ksLocation": "string",
+                  "configType": "TSC",
+                  "type": "KS",
+                  "gitRepositoryResource": {
+                    "id": 0,
+                    "testProjectId": 0,
+                    "name": "string",
+                    "repository": "string",
+                    "branch": "string",
+                    "username": "string",
+                    "password": "string",
+                    "accessKeyId": "string",
+                    "secretAccessKey": "string",
+                    "projectId": 0,
+                    "teamId": 0,
+                    "createdAt": "2019-08-24T14:15:22Z",
+                    "updatedAt": "2019-08-24T14:15:22Z",
+                    "description": "string",
+                    "vcsType": "GITHUB",
+                    "shouldMergeTestResultsForNewScriptRepo": true
+                  },
+                  "testOpsDownloadUrl": "string",
+                  "extraFiles": [
+                    {
+                      "contentUrl": "string",
+                      "path": "string",
+                      "writeMode": "OVERRIDE"
+                    }
+                  ],
+                  "organizationId": 0
+                },
+                "triggerBy": "MANUAL",
+                "duration": 0,
+                "triggerAt": "2019-08-24T14:15:22Z",
+                "user": {
+                  "id": 0,
+                  "email": "string",
+                  "firstName": "string",
+                  "lastName": "string",
+                  "password": "string",
+                  "invitingUrl": "string",
+                  "trialExpirationDate": "2019-08-24T14:15:22Z",
+                  "surveyStatus": "NOT_SUBMITTED",
+                  "sessionTimeout": 0,
+                  "businessUser": true,
+                  "canCreateOfflineKSE": true,
+                  "canCreateOfflineRE": true,
+                  "samlSSO": true,
+                  "createdAt": "2019-08-24T14:15:22Z",
+                  "fullName": "string"
+                },
+                "scheduler": {
+                  "id": 0,
+                  "name": "string",
+                  "startTime": "2019-08-24T14:15:22Z",
+                  "nextTime": "2019-08-24T14:15:22Z",
+                  "endTime": "2019-08-24T14:15:22Z",
+                  "active": true,
+                  "interval": 0,
+                  "intervalUnit": "MINUTE",
+                  "runConfigurationId": 0,
+                  "exceededLimitTime": true
+                },
+                "project": {
+                  "id": 0,
+                  "name": "string",
+                  "teamId": 0,
+                  "status": "ARCHIVE"
+                },
+                "processId": 0,
+                "nodeStatus": "PENDING_CANCELED",
+                "runConfigurationId": 0
+              },
+              "genericCommand": "string",
+              "ksVersion": "string",
+              "ksLocation": "string",
+              "nextRunScheduler": {
+                "id": 0,
+                "name": "string",
+                "startTime": "2019-08-24T14:15:22Z",
+                "nextTime": "2019-08-24T14:15:22Z",
+                "endTime": "2019-08-24T14:15:22Z",
+                "active": true,
+                "interval": 0,
+                "intervalUnit": "MINUTE",
+                "runConfigurationId": 0,
+                "runConfiguration": {
+                  "id": 0,
+                  "name": "string",
+                  "command": "string",
+                  "projectId": 0,
+                  "teamId": 0,
+                  "testProjectId": 0,
+                  "releaseId": 0,
+                  "testSuiteCollectionId": 0,
+                  "testSuiteId": 0,
+                  "executionProfileId": 0,
+                  "baselineCollectionGroupOrder": 0,
+                  "timeOut": 0,
+                  "kobitonDeviceId": "string",
+                  "configType": "TSC",
+                  "cloudType": "K8S",
+                  "genericCommand": "string",
+                  "ksVersion": "string",
+                  "ksLocation": "string",
+                  "executionMode": "SEQUENTIAL",
+                  "enabledKobitonIntegration": true,
+                  "enabledTestCloudTunnel": true,
+                  "triggerMode": "TESTOPS_SCHEDULER",
+                  "browserType": "CHROME"
+                },
+                "exceededLimitTime": true
+              },
+              "release": {
+                "id": 0,
+                "name": "string",
+                "startTime": "2019-08-24",
+                "endTime": "2019-08-24",
+                "description": "string",
+                "projectId": 0,
+                "closed": true,
+                "createdAt": "2019-08-24T14:15:22Z",
+                "releaseStatus": "NOT_READY"
+              },
+              "build": {
+                "id": 0,
+                "projectId": 0,
+                "releaseId": 0,
+                "name": "string",
+                "description": "string",
+                "date": "2019-08-24T14:15:22Z"
+              },
+              "executionMode": "SEQUENTIAL",
+              "enabledKobitonIntegration": true,
+              "enabledTestCloudTunnel": true,
+              "triggerMode": "TESTOPS_SCHEDULER",
+              "browserType": "CHROME"
+            },
+            "scheduler": {
+              "id": 0,
+              "name": "string",
+              "startTime": "2019-08-24T14:15:22Z",
+              "nextTime": "2019-08-24T14:15:22Z",
+              "endTime": "2019-08-24T14:15:22Z",
+              "active": true,
+              "interval": 0,
+              "intervalUnit": "MINUTE",
+              "runConfigurationId": 0,
+              "runConfiguration": {
+                "id": 0,
+                "name": "string",
+                "command": "string",
+                "projectId": 0,
+                "teamId": 0,
+                "testProjectId": 0,
+                "releaseId": 0,
+                "testSuiteCollectionId": 0,
+                "testSuiteId": 0,
+                "executionProfileId": 0,
+                "baselineCollectionGroupOrder": 0,
+                "timeOut": 0,
+                "kobitonDeviceId": "string",
+                "configType": "TSC",
+                "cloudType": "K8S",
+                "genericCommand": "string",
+                "ksVersion": "string",
+                "ksLocation": "string",
+                "executionMode": "SEQUENTIAL",
+                "enabledKobitonIntegration": true,
+                "enabledTestCloudTunnel": true,
+                "triggerMode": "TESTOPS_SCHEDULER",
+                "browserType": "CHROME"
+              },
+              "exceededLimitTime": true
+            }
+          }
+        }
+      },
+      "SearchConfigResource": {
+        "type": "object",
+        "properties": {
+          "filterConfig": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "sortDefault": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sortConfig": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SearchRequest": {
+        "type": "object",
+        "properties": {
+          "searchRequestConditions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchRequestCondition"
+            }
+          },
+          "searchRequestPagination": {
+            "$ref": "#/components/schemas/SearchRequestPagination"
+          },
+          "searchRequestGroupBys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "searchRequestFunctions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchRequestFunction"
+            }
+          },
+          "type": {
+            "type": "string"
+          },
+          "searchEntity": {
+            "type": "string",
+            "enum": [
+              "Execution",
+              "TestRunPlanning",
+              "ExecutionTestSuite",
+              "ExecutionStatistics",
+              "ExecutionTestModule",
+              "ExecutionTestResult",
+              "ExecutionRequest",
+              "Incident",
+              "TestCase",
+              "TestSuite",
+              "ExecutionTestStep",
+              "TestProject",
+              "Job",
+              "RunningTestRun",
+              "Project",
+              "ApiKey",
+              "Comment",
+              "Team",
+              "Organization",
+              "UserOrganization",
+              "UserTeam",
+              "UserInvitation",
+              "UserSsoInvitation",
+              "UserConfiguration",
+              "Agent",
+              "TestCloudAgent",
+              "TestCloudEnvironments",
+              "TestCloudMobileDevices",
+              "RunConfiguration",
+              "Release",
+              "Build",
+              "TestObject",
+              "TestObjectEntity",
+              "TestCaseExecution",
+              "TestCaseExecutionStatus",
+              "BuildStatistics",
+              "ReleaseStatisticsStatus",
+              "TestCaseExecutionComparison",
+              "TestCaseExecutionComparisonStatistics",
+              "TestCasePlatformStatistics",
+              "Scheduler",
+              "ExecutionAnalysis",
+              "ExecutionTestResultCategory",
+              "ExecutionTestResultGroup",
+              "ExecutionTestResultTestObjectEntity",
+              "ExecutionFile",
+              "TestSuiteCollection",
+              "TestSuiteCollectionEntity",
+              "TestCasePriority",
+              "ExternalConnection",
+              "PlatformStatistics",
+              "TestProjectFile",
+              "ProjectStatistics",
+              "ProjectRequirementStatistic",
+              "TestCaseRequirementStatistic",
+              "UserOrganizationFeature",
+              "Machine",
+              "LicenseKey",
+              "K8SAgent",
+              "CircleCiAgent",
+              "JobSummary",
+              "KatalonRecorderBackup",
+              "ExternalDefect",
+              "ExternalRequirement",
+              "ExternalXrayTest",
+              "ExternalTraceability",
+              "RequirementTestRunCoverage",
+              "WhitelistIp",
+              "KsSession",
+              "CiDashboardStatistics",
+              "Checkpoint",
+              "KeyesExecution",
+              "RecentProject",
+              "JiraIssue",
+              "SlackConnection",
+              "KobitonConnection",
+              "Baseline",
+              "BaselineCollection",
+              "TestCaseFlakiness",
+              "SimilarFailure",
+              "TestCloudTunnel",
+              "Notification",
+              "TestFolder",
+              "TestSuiteTestCase",
+              "ExecutionProfile",
+              "LastExecutionTestResultStatistics",
+              "TestCaseFlakinessStatistics",
+              "ProjectStatisticsCustomizeTime",
+              "CheckpointLayout",
+              "CheckpointContent",
+              "BaselineCollectionGroup",
+              "LabelLink",
+              "TestSuiteCollectionConfiguration"
+            ]
+          },
+          "timeZone": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchRequestCondition": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "value": {
+            "type": "object"
+          }
+        }
+      },
+      "SearchRequestFunction": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "functionName": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "timeZone": {
+            "type": "string"
+          }
+        }
+      },
+      "SearchRequestPagination": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sorts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchRequestSortOrder"
+            }
+          }
+        }
+      },
+      "SearchRequestSortOrder": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "order": {
+            "type": "string"
+          }
+        }
+      },
+      "BaseResource": {
+        "type": "object"
+      },
+      "PageBaseResource": {
+        "type": "object",
+        "properties": {
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/Sort"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BaseResource"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "sort": {
+            "$ref": "#/components/schemas/Sort"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "unpaged": {
+            "type": "boolean"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Sort": {
+        "type": "object",
+        "properties": {
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Pageable": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "minimum": 0,
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicScheme": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  }
+}
