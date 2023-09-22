@@ -2083,9 +2083,7 @@
     "/g/test": {
       "get": {
         "summary": "g",
-        "tags": [
-          "Agent"
-        ],
+        "tags": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -2093,7 +2091,7 @@
         },
         "operationId": "get-g-test",
         "x-stoplight": {
-          "id": "u8fcjxwdv4vab"
+          "id": "f3tt9h62e9t2i"
         }
       }
     },
