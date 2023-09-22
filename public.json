@@ -1905,7 +1905,121 @@
             }
           }
         },
-        "description": "A successful request to this endpoint returns the search configuration."
+        "description": "A successful request to this endpoint returns the search configuration.",
+        "x-internal": true
+      }
+    },
+    "/a/test": {
+      "get": {
+        "summary": "a",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-a-test",
+        "x-stoplight": {
+          "id": "tx2f74n31q65e"
+        },
+        "x-internal": true,
+        "deprecated": true
+      }
+    },
+    "/b/test": {
+      "get": {
+        "summary": "b",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-b-test",
+        "x-stoplight": {
+          "id": "d2x0prn3zq49q"
+        },
+        "x-internal": true,
+        "deprecated": true
+      }
+    },
+    "/c": {
+      "get": {
+        "summary": "c",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-c",
+        "x-stoplight": {
+          "id": "1ewryibo5dbui"
+        },
+        "x-internal": true
+      }
+    },
+    "/d": {
+      "get": {
+        "summary": "d",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-d",
+        "x-stoplight": {
+          "id": "f8pem25h1bsvn"
+        }
       }
     }
   },
