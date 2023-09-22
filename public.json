@@ -1963,8 +1963,7 @@
         "x-stoplight": {
           "id": "d2x0prn3zq49q"
         },
-        "x-internal": true,
-        "deprecated": true
+        "x-internal": true
       }
     },
     "/c": {
@@ -1992,7 +1991,8 @@
         "x-stoplight": {
           "id": "1ewryibo5dbui"
         },
-        "x-internal": true
+        "x-internal": false,
+        "deprecated": true
       }
     },
     "/d": {
