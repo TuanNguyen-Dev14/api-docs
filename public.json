@@ -2079,6 +2079,23 @@
           "id": "65rjw890vahbz"
         }
       }
+    },
+    "/g/test": {
+      "get": {
+        "summary": "g",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-g-test",
+        "x-stoplight": {
+          "id": "u8fcjxwdv4vab"
+        }
+      }
     }
   },
   "components": {
