@@ -2069,7 +2069,11 @@
         "tags": [
           "Agent"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
         "operationId": "get-f",
         "x-stoplight": {
           "id": "65rjw890vahbz"
