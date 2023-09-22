@@ -2113,6 +2113,23 @@
           "id": "8tv080qqew3ff"
         }
       }
+    },
+    "/i": {
+      "get": {
+        "summary": "i",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-i",
+        "x-stoplight": {
+          "id": "k1f6ut5yktp0r"
+        }
+      }
     }
   },
   "components": {
