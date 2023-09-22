@@ -2062,6 +2062,19 @@
           "id": "2yr659moj7n4g"
         }
       }
+    },
+    "/f": {
+      "get": {
+        "summary": "f",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {},
+        "operationId": "get-f",
+        "x-stoplight": {
+          "id": "65rjw890vahbz"
+        }
+      }
     }
   },
   "components": {
