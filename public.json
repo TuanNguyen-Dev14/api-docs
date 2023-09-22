@@ -1952,6 +1952,19 @@
         },
         "x-internal": true
       }
+    },
+    "/d": {
+      "get": {
+        "summary": "d",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {},
+        "operationId": "get-d",
+        "x-stoplight": {
+          "id": "f8pem25h1bsvn"
+        }
+      }
     }
   },
   "components": {
