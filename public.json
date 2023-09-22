@@ -1920,7 +1920,23 @@
         "x-stoplight": {
           "id": "tx2f74n31q65e"
         },
-        "x-internal": false
+        "x-internal": true,
+        "deprecated": true
+      }
+    },
+    "/b/test": {
+      "get": {
+        "summary": "b",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {},
+        "operationId": "get-b-test",
+        "x-stoplight": {
+          "id": "d2x0prn3zq49q"
+        },
+        "x-internal": true,
+        "deprecated": true
       }
     }
   },
