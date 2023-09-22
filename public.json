@@ -1907,6 +1907,21 @@
         },
         "description": "A successful request to this endpoint returns the search configuration."
       }
+    },
+    "/tuan/test": {
+      "get": {
+        "summary": "test get",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {},
+        "operationId": "get-tuan-test",
+        "x-stoplight": {
+          "id": "o6ku4bnrattjh"
+        },
+        "deprecated": true,
+        "x-internal": true
+      }
     }
   },
   "components": {
