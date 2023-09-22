@@ -1915,7 +1915,21 @@
         "tags": [
           "Agent"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-a-test",
         "x-stoplight": {
           "id": "tx2f74n31q65e"
@@ -1930,7 +1944,21 @@
         "tags": [
           "Agent"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-b-test",
         "x-stoplight": {
           "id": "d2x0prn3zq49q"
@@ -1945,7 +1973,21 @@
         "tags": [
           "Agent"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-c",
         "x-stoplight": {
           "id": "1ewryibo5dbui"
@@ -1959,7 +2001,21 @@
         "tags": [
           "Agent"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/SearchConfigResource"
+                  }
+                }
+              }
+            }
+          }
+        },
         "operationId": "get-d",
         "x-stoplight": {
           "id": "f8pem25h1bsvn"
