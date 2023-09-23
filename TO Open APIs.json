@@ -5733,6 +5733,19 @@
           }
         }
       }
+    },
+    "/k": {
+      "get": {
+        "summary": "k",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {},
+        "operationId": "get-k",
+        "x-stoplight": {
+          "id": "38v0vfjah3tlf"
+        }
+      }
     }
   },
   "components": {
