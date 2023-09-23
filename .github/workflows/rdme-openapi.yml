@@ -23,7 +23,7 @@ jobs:
       #     rdme: openapi public.json --key=${{ secrets.README_API_KEY }} --id=${{ inputs.api-definition-id }}
 
       - name: Run `openapi` command 🚀
-      run: |
-        npm install rdme@latest -g
-        rdme openapi --version=v1.4 \
-          --key=${{ secrets.README_API_KEY }}
+        run: |
+          npm install rdme@latest -g
+          rdme openapi --version=v1.4 \
+            --key=${{ secrets.README_API_KEY }}
