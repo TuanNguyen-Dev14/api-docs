@@ -5734,16 +5734,30 @@
         }
       }
     },
-    "/k": {
+    "/k/test": {
       "get": {
         "summary": "k",
         "tags": [
           "Agent"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
         "operationId": "get-k",
         "x-stoplight": {
           "id": "38v0vfjah3tlf"
+        }
+      },
+      "parameters": []
+    },
+    "/k": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
         }
       }
     }
