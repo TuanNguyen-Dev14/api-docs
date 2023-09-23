@@ -25,5 +25,5 @@ jobs:
       - name: Run `openapi` command 🚀
         run: |
           npm install rdme@latest -g
-          rdme openapi --version=v1.4 \
+          rdme openapi --github --version=v1.4 \
             --key=${{ secrets.README_API_KEY }}
