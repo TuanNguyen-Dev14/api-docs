@@ -2135,7 +2135,11 @@
         "tags": [
           "Agent"
         ],
-        "responses": {},
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
         "operationId": "get-k-test",
         "x-stoplight": {
           "id": "kb9s1x8vtanxx"
