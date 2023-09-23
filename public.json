@@ -2128,6 +2128,19 @@
           "id": "k1f6ut5yktp0r"
         }
       }
+    },
+    "/k/test": {
+      "get": {
+        "summary": "k",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {},
+        "operationId": "get-k-test",
+        "x-stoplight": {
+          "id": "kb9s1x8vtanxx"
+        }
+      }
     }
   },
   "components": {
