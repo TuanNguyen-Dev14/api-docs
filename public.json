@@ -2145,6 +2145,23 @@
           "id": "kb9s1x8vtanxx"
         }
       }
+    },
+    "/l/test": {
+      "get": {
+        "summary": "l",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-l-test",
+        "x-stoplight": {
+          "id": "ivlkcp1c7x72b"
+        }
+      }
     }
   },
   "components": {
