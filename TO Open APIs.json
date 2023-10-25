@@ -197,7 +197,8 @@
     "/api/v1/test-projects/{id}": {
       "get": {
         "tags": [
-          "Test Project"
+          "Test Project",
+          "Build"
         ],
         "summary": "Returns a Test Project detail.",
         "operationId": "get_3",
@@ -224,7 +225,8 @@
             }
           }
         },
-        "x-internal": true
+        "x-internal": true,
+        "deprecated": true
       },
       "put": {
         "tags": [
@@ -5757,6 +5759,51 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/tuantest/a": {
+      "get": {
+        "summary": "a",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-tuantest-a",
+        "x-stoplight": {
+          "id": "nwvlpx01x6c09"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            },
+            "application/pdf": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
           }
         }
       }

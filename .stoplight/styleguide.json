@@ -13,25 +13,9 @@
   ],
   "aliases": {},
   "rules": {},
-  "extendedStyleguides": [
-    {
-      "id": "cHJqOjEyMzU4Ng",
-      "name": "Stoplight Style Guide",
-      "slug": "stoplight-style-guide",
-      "workspace": {
-        "slug": "apistylebook",
-        "name": "API Stylebook"
-      },
-      "icon": "robot",
-      "color": "#3898ff",
-      "description": "Default rules for Stoplight projects",
-      "latestRelease": {
-        "release": 35
-      }
-    }
-  ],
   "inheritedRules": [
     {
+      "id": "sCZ13nkZCGBCnxnH4IEgL",
       "given": [
         "#API_Contact"
       ],
@@ -46,6 +30,7 @@
       "message": "Contact object should have \"url\"."
     },
     {
+      "id": "QkgyGNcH08ZZV2aMDqx-S",
       "given": [
         "#API_Contact"
       ],
@@ -60,6 +45,7 @@
       "message": "Contact object should have \"email\""
     },
     {
+      "id": "F9i4s-cN5PHziqRgyMDcj",
       "given": [
         "#API_Document"
       ],
@@ -74,6 +60,7 @@
       "message": "Info object should have \"contact\" object."
     },
     {
+      "id": "hNSF8Dkkd5xsxC-NHL-Q8",
       "given": [
         "#API_Document"
       ],
@@ -88,6 +75,7 @@
       "message": "Info object should have \"description\" object."
     },
     {
+      "id": "c6SJX7Teqv0wZWjY5VpaL",
       "given": [
         "#API_Document"
       ],
@@ -102,6 +90,7 @@
       "message": "Info object should have \"license\" object."
     },
     {
+      "id": "TXdggC-U8Wu18shn_H8vF",
       "given": [
         "#API_License"
       ],
@@ -116,6 +105,7 @@
       "message": "License object should include \"url\"."
     },
     {
+      "id": "46Pjlyaf_cqsExgcdH9QO",
       "given": [
         "#All_Markdown"
       ],
@@ -132,6 +122,7 @@
       "message": "Markdown descriptions must not have \"eval(\"."
     },
     {
+      "id": "9WOS3a_mC8lIqkyBmr1i4",
       "given": [
         "#All_Markdown"
       ],
@@ -148,6 +139,7 @@
       "message": "Markdown descriptions must not have \"<script>\" tags."
     },
     {
+      "id": "Zc0ezOLsh5ZzpN2qWMSAN",
       "given": [
         "#API_Tags"
       ],
@@ -164,6 +156,7 @@
       "message": "OpenAPI object should have alphabetical \"tags\"."
     },
     {
+      "id": "lpVWgpwzhg9Pz8Pu7CtB6",
       "given": [
         "#API_Tags"
       ],
@@ -183,6 +176,7 @@
       "message": "OpenAPI object should have non-empty \"tags\" array."
     },
     {
+      "id": "8NOTDQmuNbNQPHkadxstn",
       "given": [
         "#Operation_Object"
       ],
@@ -197,6 +191,7 @@
       "message": "Operation \"description\" should be present and non-empty string."
     },
     {
+      "id": "X-CkB_FF-fzm5QL2CZIlV",
       "given": [
         "#Operation_Object"
       ],
@@ -211,6 +206,7 @@
       "message": "Operation should have \"operationId\"."
     },
     {
+      "id": "XlUtY-kCRfua_xG7eteOg",
       "given": [
         "#Operation_Object"
       ],
@@ -228,6 +224,7 @@
       "message": "OperationId should not have characters that are invalid when used in URL."
     },
     {
+      "id": "pWMRsnnKyNgdcJn4k7yqs",
       "given": [
         "#API_Tags"
       ],
@@ -244,6 +241,7 @@
       "message": "Operation should not have more than a single tag."
     },
     {
+      "id": "YVs7DOSkoyDl1Se3uxNqt",
       "given": [
         "#Operation_Object"
       ],
@@ -262,6 +260,7 @@
       "message": "Operation should have non-empty \"tags\" array."
     },
     {
+      "id": "k-7GWi6G93mnh14Q62Fo7",
       "given": [
         "#Path_Item"
       ],
@@ -279,6 +278,7 @@
       "message": "Path parameter declarations must not be empty, ex.\"/given/{}\" is invalid."
     },
     {
+      "id": "THYtNRfsJIRZswOh7PT8g",
       "given": [
         "#API_Contact"
       ],
@@ -293,6 +293,7 @@
       "message": "Contact object should have \"name\""
     },
     {
+      "id": "QcsZCvIG2gtkvNI8G8j-L",
       "given": [
         "#Path_Object"
       ],
@@ -310,6 +311,7 @@
       "message": "Path should not end with slash."
     },
     {
+      "id": "iOBxzwC5h4nim4i6tBwtj",
       "given": [
         "#Path_Object"
       ],
@@ -327,6 +329,7 @@
       "message": "Path should not include query string."
     },
     {
+      "id": "jnGkKBKDD99fTVUn9RKu1",
       "given": [
         "#API_Tags_Item"
       ],
@@ -341,6 +344,7 @@
       "message": "Tag object should have \"description\"."
     },
     {
+      "id": "OndXhhNYbdq60bxQnKN50",
       "given": [
         "#API_Server"
       ],
@@ -364,6 +368,7 @@
       "message": "Server should be present."
     },
     {
+      "id": "-Wk_iIJkDeqSLJm9TjlOC",
       "given": [
         "#API_Server_URL"
       ],
@@ -380,6 +385,7 @@
       "message": "Server URL should not have trailing slash"
     },
     {
+      "id": "O3hBIX8v7dSULl_5qVxAB",
       "given": [
         "#Operation_Object"
       ],
@@ -394,6 +400,7 @@
       "message": "Operation should have at least one \"2xx\" or \"3xx\" response."
     },
     {
+      "id": "qS3JIaarJjBVVir47mROs",
       "given": [
         "#API_Document"
       ],
@@ -407,6 +414,7 @@
       "message": "{{error}}"
     },
     {
+      "id": "p_iGefQaLLpPkxa4xLFxE",
       "given": [
         "#Operation_Object"
       ],
@@ -421,6 +429,7 @@
       "message": "Operation parameters are unique and non-repeating."
     },
     {
+      "id": "PkxfJcmHX1qtwt4fVgPId",
       "given": [
         "#All_Enum_Object"
       ],
@@ -434,6 +443,7 @@
       "message": "{{error}}"
     },
     {
+      "id": "YWSz5o5fNOk05inz8iQj5",
       "given": [
         "#API_Document"
       ],
@@ -450,6 +460,7 @@
       ]
     },
     {
+      "id": "Xy-P48r_ifpY44nnSBTzb",
       "given": [
         "#API_Document"
       ],
@@ -466,6 +477,7 @@
       ]
     },
     {
+      "id": "f4ZrNzjBQJqZgD-5bmXZw",
       "given": [
         "#API_Document"
       ],
@@ -482,6 +494,7 @@
       ]
     },
     {
+      "id": "6LLc-sbh72xjgwitF6bsv",
       "given": [
         "#API_Document"
       ],
@@ -495,6 +508,7 @@
       "message": "Every operation must have unique operationId"
     },
     {
+      "id": "IhGvD65EGv9i0evOMJZll",
       "given": [
         "#Operation_Object"
       ],
@@ -511,6 +525,7 @@
       ]
     },
     {
+      "id": "i1iYoBqn9eQxgBcsIULry",
       "given": [
         "#API_Document"
       ],
@@ -524,6 +539,7 @@
       "message": "Operation tags must be defined in global tags"
     },
     {
+      "id": "99tWHDA-qqqIwNowCLI2C",
       "given": [
         "#All_Ref"
       ],
@@ -541,6 +557,7 @@
       ]
     },
     {
+      "id": "_juQkh-ubz1AqWWBYYa3g",
       "given": [
         "#API_Document"
       ],
@@ -562,6 +579,7 @@
       ]
     },
     {
+      "id": "laIjo-WqIzjIHSWHazkJb",
       "given": [
         "#API_Document"
       ],
@@ -584,6 +602,7 @@
       ]
     },
     {
+      "id": "nFnoLi9ZbecSvHcINIM9v",
       "given": [
         "#All_Enum_Object"
       ],
@@ -604,6 +623,7 @@
       "message": "{{error}}"
     },
     {
+      "id": "xOcDHh1j7mla9uWjDffyP",
       "given": [
         "#API_Document"
       ],
@@ -631,6 +651,7 @@
       ]
     },
     {
+      "id": "eGEp5-KNa_Pa769WazaBJ",
       "given": [
         "#API_Document"
       ],
@@ -648,6 +669,7 @@
       ]
     },
     {
+      "id": "jCNSC92mf-VaxsvuYkMj2",
       "given": [
         "#API_Server_URL"
       ],
@@ -664,6 +686,7 @@
       "message": "Server URL must not point at example.com."
     },
     {
+      "id": "RjaoCHIXzTKTuBdW5DuXO",
       "given": [
         "#Request_Parameter_All"
       ],
@@ -678,6 +701,7 @@
       "message": "Parameter objects must have \"description\"."
     },
     {
+      "id": "cBcwwEUGAvSWkLthF1RIK",
       "given": [
         "#API_Document_RecursiveSearch"
       ],
@@ -695,6 +719,7 @@
       ]
     },
     {
+      "id": "GGSPZWuWS140JcLZcYCH_",
       "given": [
         "#API_Document_RecursiveSearch"
       ],
@@ -712,6 +737,7 @@
       ]
     },
     {
+      "id": "TLOW-HPOqE2YyJ_lLawa-",
       "given": [
         "#All_Example"
       ],
@@ -734,6 +760,7 @@
       ]
     },
     {
+      "id": "9t15Lc4YAGSOIZqBi1mbD",
       "given": [
         "#All_Example_Schema"
       ],
@@ -755,6 +782,7 @@
       ]
     },
     {
+      "id": "h04MU7CiCX1YQuYq5hAyZ",
       "given": [
         "#All_Example_Schema"
       ],
@@ -776,6 +804,7 @@
       ]
     },
     {
+      "id": "J-ia0sXHUE9OC3GIfCDWd",
       "given": [
         "#All_Example_Media"
       ],
@@ -797,6 +826,7 @@
       ]
     },
     {
+      "id": "62rZxhydmNf8ivz6niys6",
       "given": [
         "#All_Example_Media"
       ],
@@ -820,6 +850,7 @@
   ],
   "inheritedTargets": [
     {
+      "id": "5_JqFVN-yvx3IsN-nMgnu",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "The complete API specification document. This can be used to target any part of the OpenAPI document using **field**.\n\n*Use this if you don't find specific targets that cater to your usecase.* ",
       "name": "API_Document",
@@ -839,6 +870,7 @@
       ]
     },
     {
+      "id": "Eu8UA_a_VvA3nwijsFgGi",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "The top level description in an API document",
       "name": "API_Description",
@@ -858,6 +890,7 @@
       ]
     },
     {
+      "id": "D798j9b6JatG6UrMU9YmZ",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "The complete operation object. Use it in combo with field object.",
       "name": "Operation_Object",
@@ -877,6 +910,7 @@
       ]
     },
     {
+      "id": "F-xAolKYIcBzy4yQaTWcl",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "Responses for all operations including get, put, post, delete, options, head, patch, trace.",
       "name": "Operation_Responses",
@@ -896,6 +930,7 @@
       ]
     },
     {
+      "id": "SLsUJkPq_RcdW0IjjvG6O",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "name": "Path_Item",
       "targets": [
@@ -914,6 +949,7 @@
       ]
     },
     {
+      "id": "ABX3Da4vH9RdOM-WhKunD",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "The top level description in an API document",
       "name": "API_Contact",
@@ -933,6 +969,7 @@
       ]
     },
     {
+      "id": "F3qpRXBnnx9sv-TVGtGF2",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "The top level description in an API document",
       "name": "API_License",
@@ -952,6 +989,7 @@
       ]
     },
     {
+      "id": "l22ma9_lOZqY1TOLu-EXf",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All markdown descriptions across the document.",
       "name": "All_Markdown",
@@ -971,6 +1009,7 @@
       ]
     },
     {
+      "id": "iSOxGjStVVLEyEJbcomJX",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "Tags on an API object",
       "name": "API_Tags",
@@ -990,6 +1029,7 @@
       ]
     },
     {
+      "id": "qGGjIdbgz5MRKd2xO4ELU",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "API hosts defined in the API specification",
       "name": "API_Server",
@@ -1009,6 +1049,7 @@
       ]
     },
     {
+      "id": "BwfOUhVMfw0ma6AQ39BRY",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All responses (object) in an API",
       "name": "Response_All_Object",
@@ -1052,6 +1093,7 @@
       ]
     },
     {
+      "id": "syqrA9_3hCQvxdXzO2FYP",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "API host urls defined in the API specification",
       "name": "API_Server_URL",
@@ -1071,6 +1113,7 @@
       ]
     },
     {
+      "id": "OL0rrxLApYIsybcZXuAWw",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All references throughout the API",
       "name": "All_Ref",
@@ -1090,6 +1133,7 @@
       ]
     },
     {
+      "id": "UF2AJxEodmpmn5w1LgMPn",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All references throughout the API",
       "name": "All_Enum_Object",
@@ -1109,6 +1153,7 @@
       ]
     },
     {
+      "id": "jiokVvPW4WU5vvsKqXD2r",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All request parameters",
       "name": "Request_Parameter_All",
@@ -1128,6 +1173,7 @@
       ]
     },
     {
+      "id": "7stOxRuQAh7c-XYDLa1uv",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All request query parameters",
       "name": "Request_Parameter_Query",
@@ -1147,6 +1193,7 @@
       ]
     },
     {
+      "id": "4DBMuACHVjUv12VsExZQv",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All request header parameters",
       "name": "Request_Parameter_Header",
@@ -1166,6 +1213,7 @@
       ]
     },
     {
+      "id": "buCdOTdjfXa8cs9HDSWXc",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All request cookie parameters",
       "name": "Request_Parameter_Cookie",
@@ -1185,6 +1233,7 @@
       ]
     },
     {
+      "id": "wKr4hR68bxUTV2ZXNH67A",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All request path parameters",
       "name": "Request_Parameter_Path",
@@ -1204,6 +1253,7 @@
       ]
     },
     {
+      "id": "IePB1b2CshMiqV-VI2Jdi",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "Path object. Usually used to target the Path key e.g. `/users/{userId}`",
       "name": "Path_Object",
@@ -1223,6 +1273,7 @@
       ]
     },
     {
+      "id": "av0R4qsKBVKo8riizf3N2",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All examples for schemas",
       "name": "All_Example_Schema",
@@ -1272,6 +1323,7 @@
       ]
     },
     {
+      "id": "Lq3Gh5gErdO8kywidiv0F",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "The complete API specification document. This can be used to target any part of the OpenAPI document using **field**.\n\n*Use this if you don't find specific targets that cater to your usecase.* ",
       "name": "API_Document_RecursiveSearch",
@@ -1291,6 +1343,7 @@
       ]
     },
     {
+      "id": "MW4bBpGB2s8asN6yjqF2O",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All examples across the API document",
       "name": "All_Example",
@@ -1340,6 +1393,7 @@
       ]
     },
     {
+      "id": "8CctG9Yfsz1EsyOzisA4g",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All examples for schemas",
       "name": "All_Example_Media",
@@ -1371,6 +1425,7 @@
       ]
     },
     {
+      "id": "rQi1vplmzLyXPxm4EborF",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "Tags on an API object",
       "name": "API_Tags_Item",
@@ -1390,6 +1445,7 @@
       ]
     },
     {
+      "id": "0pYR8DZlVwhMF_8dF2Doy",
       "extendedFrom": "cHJqOjEyMzU4Ng@35",
       "description": "All enum values throughout the API",
       "name": "All_Enum_Value",
