@@ -2162,6 +2162,34 @@
           "id": "ivlkcp1c7x72b"
         }
       }
+    },
+    "/a/tes": {
+      "get": {
+        "summary": "a",
+        "tags": [
+          "Agent"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "operationId": "get-a-tes",
+        "x-stoplight": {
+          "id": "ogyssrrs0uz0b"
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
+          },
+          "description": "a"
+        }
+      }
     }
   },
   "components": {
